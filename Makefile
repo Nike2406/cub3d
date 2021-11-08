@@ -1,30 +1,14 @@
-ifeq ($(MAKECMDGOALS),bonus)
-	NAME = checker
-else
-	NAME = fdf
-endif
+NAME = cub3d
 FLAGS		= -Wall -Wextra -Werror
 CFLAGS		= $(FLAGS) -I. -g
 CC			= gcc
 
-ifeq ($(MAKECMDGOALS),bonus)
-	OBJS = $(SRCS_BONUS:%.c=%.o)
-else
-	OBJS = $(SRCS:%.c=%.o)
-endif
-
-LIBFT_OBJS	= $(LIBFT:%.c=%.o)
-SRCS 		= src/fdf.c \
-			src/read_file.c \
-			src/utils1.c \
-			src/utils2.c \
-			src/draw1.c \
-			src/draw2.c \
-			src/keys.c \
-			src/rotate.c \
+SRCS 		= src/cub3d.c src/err.c src/read_file.c src/utils.c \
 			get_next_line/get_next_line.c
-SRCS_BONUS	=
-INCLUDE		= fdf.h \
+OBJS = $(SRCS:%.c=%.o)
+LIBFT_OBJS	= $(LIBFT:%.c=%.o)
+
+INCLUDE		= cub3d.h \
 			get_next_line/get_next_line.h
 LIBFT_A		= libft/libft.a
 MINI_LIBX	= minilibx_macos/libmlx.a
