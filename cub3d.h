@@ -18,6 +18,17 @@ typedef struct s_cub3d
 	int		height;
 }	t_cub3d;
 
+typedef struct s_win
+{
+	void	*mlx;
+	void	*win;
+	void	*img;
+	void	*addr;
+	int		line_l;
+	int		bpp;
+	int		en;
+}	t_win;
+
 void	common_err(int err);
 void	read_file(char *file_name, t_cub3d *data);
 int		get_height(char *file_name);
