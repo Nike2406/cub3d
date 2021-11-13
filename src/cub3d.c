@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:22:16 by prochell          #+#    #+#             */
-/*   Updated: 2021/11/13 18:32:42 by prochell         ###   ########.fr       */
+/*   Updated: 2021/11/13 19:54:15 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 		common_err(ERR_MALLOC);
 	read_file(argv[1], data);
 	int i = 0;
-	while (data->map) {
+	while (data->map[i] != NULL) {
 		printf("%s\n", data->map[i]);
 		i++;
 	}
