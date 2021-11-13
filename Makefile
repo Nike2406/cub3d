@@ -17,12 +17,12 @@ FRAMEWORK	= -framework OpenGL -framework AppKit
 .PHONY: all clean fclean re bonus libft norm
 
 .o: .c $(INCLUDE)
-	$(CC) $(CFLAGS) $< -o $@
+	@$(CC) $(CFLAGS) $< -o $@
 
 all: libft mlx $(NAME)
 
 ${NAME}: $(OBJS) $(INCLUDE)
-	$(CC) $(OBJS) $(LIBFT_A) $(MINI_LIBX) $(FRAMEWORK) -o $(NAME)
+	@$(CC) $(OBJS) $(LIBFT_A) $(MINI_LIBX) $(FRAMEWORK) -o $(NAME)
 
 bonus: libft $(NAME)
 
@@ -33,10 +33,10 @@ norm:
 	make -C libft/ norm
 
 libft:
-	make lib -C libft
+	@make lib -C libft
 
 mlx:
-	make -C minilibx_macos
+	@make -C minilibx_macos
 
 clean:
 	rm -f src/*.o

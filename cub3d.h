@@ -12,6 +12,8 @@
 # define ERR_READING	2
 # define ERR_ARGUMENTS	3
 
+# define ERR_PLAYER		1
+
 typedef struct s_win
 {
 	void	*mlx;
@@ -30,8 +32,13 @@ typedef struct s_all
 }	t_all;
 
 void	common_err(int err);
-void	read_file(char *file_name, t_all *data);
+void	map_err(int err);
+
 int		get_height(char *file_name);
 int		get_width(char *file_name);
+
+void	read_file(char *file_name, t_all *data);
+int		check_map_validation(char **map);
+void	check_player(char **map);
 
 #endif

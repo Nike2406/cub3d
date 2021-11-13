@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:25:51 by prochell          #+#    #+#             */
-/*   Updated: 2021/11/13 18:30:26 by prochell         ###   ########.fr       */
+/*   Updated: 2021/11/13 21:07:46 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,17 @@
 void	common_err(int err)
 {
 	if (err == ERR_MALLOC)
-		printf("Malloc failed!");
+		printf("Malloc failed!\n");
 	else if (err == ERR_ARGUMENTS)
-		printf("Arguments error!");
+		printf("Arguments error!\n");
 	else if (err == ERR_READING)
-		printf("Reading failed!");
+		printf("Reading failed!\n");
+	exit(1);
+}
+
+void	map_err(int err)
+{
+	if (err == ERR_PLAYER)
+		printf("It must be just one player!\n");
 	exit(1);
 }
