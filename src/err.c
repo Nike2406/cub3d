@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:25:51 by prochell          #+#    #+#             */
-/*   Updated: 2021/11/08 21:08:39 by prochell         ###   ########.fr       */
+/*   Updated: 2021/11/13 18:30:26 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ void	common_err(int err)
 		printf("Arguments error!");
 	else if (err == ERR_READING)
 		printf("Reading failed!");
-	exit(0);
+	exit(1);
 }

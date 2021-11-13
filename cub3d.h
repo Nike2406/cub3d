@@ -12,12 +12,6 @@
 # define ERR_READING	2
 # define ERR_ARGUMENTS	3
 
-typedef struct s_cub3d
-{
-	int		width;
-	int		height;
-}	t_cub3d;
-
 typedef struct s_win
 {
 	void	*mlx;
@@ -29,8 +23,14 @@ typedef struct s_win
 	int		en;
 }	t_win;
 
+typedef struct s_all
+{
+	t_win	*win;
+	char	**map;
+}	t_all;
+
 void	common_err(int err);
-void	read_file(char *file_name, t_cub3d *data);
+void	read_file(char *file_name, t_all *data);
 int		get_height(char *file_name);
 int		get_width(char *file_name);
 
