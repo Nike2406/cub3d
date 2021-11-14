@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 19:08:27 by prochell          #+#    #+#             */
-/*   Updated: 2021/11/14 19:09:13 by prochell         ###   ########.fr       */
+/*   Updated: 2021/11/14 19:40:01 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_all
 
 void	common_err(int err);
 void	map_err(int err);
+void	clean(t_all *data);
 
 int		get_height_file(char *file_name);
 int		get_width_file(char *file_name);

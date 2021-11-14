@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:44:49 by prochell          #+#    #+#             */
-/*   Updated: 2021/11/14 18:07:16 by prochell         ###   ########.fr       */
+/*   Updated: 2021/11/14 19:57:35 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ int	get_height_arr(char **arr)
 	return (i);
 }
 
-int	get_width_arr(char *arr)
-{
-	int	i;
+// int	get_width_arr(char *arr)
+// {
+// 	int	i;
 
-	i = 0;
-	while (arr[i])
-		i++;
-	return (i);
-}
+// 	i = 0;
+// 	while (arr[i])
+// 		i++;
+// 	return (i);
+// }
 
 int	get_height_file(char *file_name)
 {
@@ -55,22 +55,36 @@ int	get_height_file(char *file_name)
 	return (height);
 }
 
-int	get_width_file(char *file_name)
-{
-	char	*line;
-	int		fd;
-	int		width;
+// int	get_width_file(char *file_name)
+// {
+// 	char	*line;
+// 	int		fd;
+// 	int		width;
 
-	line = NULL;
-	fd = open(file_name, O_RDONLY, 0);
-	if (fd < 0)
-		common_err(ERR_READING);
-	while (get_next_line(fd, &line))
+// 	line = NULL;
+// 	fd = open(file_name, O_RDONLY, 0);
+// 	if (fd < 0)
+// 		common_err(ERR_READING);
+// 	while (get_next_line(fd, &line))
+// 	{
+// 		width = ft_wdcounter(line, ' ');
+// 		free(line);
+// 	}
+// 	free(line);
+// 	close(fd);
+// 	return (width);
+// }
+
+void	clean(t_all *data)
+{
+	int	i;
+
+	i = -1;
+	while (data->map[++i])
 	{
-		width = ft_wdcounter(line, ' ');
-		free(line);
+		// printf();
+		free(data->map[i]);
 	}
-	free(line);
-	close(fd);
-	return (width);
+	free(data->map);
+	free(data);
 }

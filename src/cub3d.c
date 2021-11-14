@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:22:16 by prochell          #+#    #+#             */
-/*   Updated: 2021/11/13 22:32:38 by prochell         ###   ########.fr       */
+/*   Updated: 2021/11/14 19:57:55 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,5 @@ int	main(int argc, char **argv)
 		common_err(ERR_MALLOC);
 	read_file(argv[1], data);
 	check_map_validation(data);
+	clean(data);
 }
