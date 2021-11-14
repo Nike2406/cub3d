@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:44:49 by prochell          #+#    #+#             */
-/*   Updated: 2021/11/14 19:57:35 by prochell         ###   ########.fr       */
+/*   Updated: 2021/11/14 20:31:19 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,6 @@ int	get_height_arr(char **arr)
 		i++;
 	return (i);
 }
-
-// int	get_width_arr(char *arr)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (arr[i])
-// 		i++;
-// 	return (i);
-// }
 
 int	get_height_file(char *file_name)
 {
@@ -55,6 +45,17 @@ int	get_height_file(char *file_name)
 	return (height);
 }
 
+void	clean(t_all *data)
+{
+	int	i;
+
+	i = -1;
+	while (data->map[++i])
+		free(data->map[i]);
+	free(data->map);
+	free(data);
+}
+
 // int	get_width_file(char *file_name)
 // {
 // 	char	*line;
@@ -75,16 +76,12 @@ int	get_height_file(char *file_name)
 // 	return (width);
 // }
 
-void	clean(t_all *data)
-{
-	int	i;
+// int	get_width_arr(char *arr)
+// {
+// 	int	i;
 
-	i = -1;
-	while (data->map[++i])
-	{
-		// printf();
-		free(data->map[i]);
-	}
-	free(data->map);
-	free(data);
-}
+// 	i = 0;
+// 	while (arr[i])
+// 		i++;
+// 	return (i);
+// }

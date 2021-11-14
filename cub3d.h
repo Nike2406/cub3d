@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 19:08:27 by prochell          #+#    #+#             */
-/*   Updated: 2021/11/14 19:40:01 by prochell         ###   ########.fr       */
+/*   Updated: 2021/11/14 20:59:24 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "./get_next_line/get_next_line.h"
 # include <stdio.h>
 # include <math.h>
-// # include "./minilibx_macos/mlx.h"
+# include "./minilibx_macos/mlx.h"
 
 # define ERR_MALLOC		1
 # define ERR_READING	2
@@ -40,9 +40,15 @@ typedef struct s_win
 	void	*win;
 	void	*img;
 	void	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 	int		line_l;
 	int		bpp;
 	int		en;
+
+	int		img_width;
+	int		img_height;
 }	t_win;
 
 typedef struct s_all
@@ -68,5 +74,7 @@ void	check_player(t_all *data);
 void	check_map(t_all *data);
 int		valid_symbol(char **arr, int i, int j, char s);
 void	check_borders(char **map, int i);
+
+void	my_mlx_pixel_put(t_win *win, int x, int y, int color);
 
 #endif
