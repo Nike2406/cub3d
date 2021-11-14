@@ -6,30 +6,39 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 22:20:17 by prochell          #+#    #+#             */
-/*   Updated: 2021/11/13 22:45:09 by prochell         ###   ########.fr       */
+/*   Updated: 2021/11/14 19:06:22 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-// Fix valid over borders
-int	valid_symbol(char **arr, int i, int j, char s)
+void	check_map(t_all *data)
 {
-	// if (!arr[i - 1][j] || !arr[i][j - 1])
-	// 	return (0);
-	if (i > 0 || j > 0)
+	int	i;
+	int	j;
+
+	i = 1;
+	while (data->map[i + 1])
 	{
-		if (arr[i + 1][j] == s || \
-			arr[i - 1][j] == s || \
-			arr[i][j + 1] == s || \
-			arr[i][j - 1] == s)
-			return (1);
-		return (0);
+		j = 1;
+		if (data->map[i][0] == '0')
+			map_err(ERR_MAP);
+		while (data->map[i][j + 1])
+		{
+			if (data->map[i][j] == '0')
+			{
+				if (valid_symbol(data->map, i, j, ' '))
+					map_err(ERR_MAP);
+			}
+			j++;
+		}
+		if (data->map[i][j] == '0')
+			map_err(ERR_MAP);
+		i++;
 	}
-	return (0);
 }
 
-void check_sympols(char **map)
+void	check_sympols(char **map)
 {
 	int	i;
 	int	j;
@@ -40,9 +49,9 @@ void check_sympols(char **map)
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] != 'N' && map[i][j] != 'E' &&\
+			if (map[i][j] != 'N' && map[i][j] != 'E' && \
 				map[i][j] != 'S' && map[i][j] != 'W' && \
-				map[i][j] != ' ' && map[i][j] != '0' &&\
+				map[i][j] != ' ' && map[i][j] != '0' && \
 				map[i][j] != '1')
 				map_err(ERR_SYMBOL);
 			j++;
@@ -51,33 +60,7 @@ void check_sympols(char **map)
 	}
 }
 
-void check_map(t_all *data)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (data->map[i])
-	{
-		j = 0;
-		while (data->map[i][j])
-		{
-			if (data->map[i][j] == '0')
-			{
-				if (valid_symbol(data->map, i, j, ' '))
-					map_err(ERR_MAP);
-			}
-			j++;
-		}
-		i++;
-	}
-	i = data->player.x;
-	j = data->player.y;
-	if (valid_symbol(data->map, i, j, ' '))
-		map_err(ERR_MAP);
-}
-
-void check_player(t_all *data)
+void	check_player(t_all *data)
 {
 	int	i;
 	int	j;
@@ -90,13 +73,13 @@ void check_player(t_all *data)
 		j = 0;
 		while (data->map[i][j])
 		{
-			if (data->map[i][j] == 'N' || data->map[i][j] == 'E' ||\
+			if (data->map[i][j] == 'N' || data->map[i][j] == 'E' || \
 				data->map[i][j] == 'S' || data->map[i][j] == 'W')
-				{
-					player++;
-					data->player.x = i;
-					data->player.y = j;
-				}
+			{
+				player++;
+				data->player.x = i;
+				data->player.y = j;
+			}
 			j++;
 		}
 		i++;
@@ -109,5 +92,9 @@ void	check_map_validation(t_all *data)
 {
 	check_sympols(data->map);
 	check_player(data);
+	check_borders(data->map, 0);
+	check_borders(data->map, get_height_arr(data->map) - 1);
 	check_map(data);
+	if (valid_symbol(data->map, data->player.x, data->player.y, ' '))
+		map_err(ERR_MAP);
 }

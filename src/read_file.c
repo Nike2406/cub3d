@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:33:42 by prochell          #+#    #+#             */
-/*   Updated: 2021/11/13 22:20:45 by prochell         ###   ########.fr       */
+/*   Updated: 2021/11/14 18:11:16 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	read_file(char *file_name, t_all *data)
 	int		i;
 	int		height;
 
-	height = get_height(file_name);
+	height = get_height_file(file_name);
 	line = NULL;
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)

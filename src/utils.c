@@ -6,13 +6,33 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:44:49 by prochell          #+#    #+#             */
-/*   Updated: 2021/11/13 22:20:34 by prochell         ###   ########.fr       */
+/*   Updated: 2021/11/14 18:07:16 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	get_height(char *file_name)
+int	get_height_arr(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+		i++;
+	return (i);
+}
+
+int	get_width_arr(char *arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+		i++;
+	return (i);
+}
+
+int	get_height_file(char *file_name)
 {
 	char	*line;
 	int		fd;
@@ -35,7 +55,7 @@ int	get_height(char *file_name)
 	return (height);
 }
 
-int	get_width(char *file_name)
+int	get_width_file(char *file_name)
 {
 	char	*line;
 	int		fd;

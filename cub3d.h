@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/14 19:08:27 by prochell          #+#    #+#             */
+/*   Updated: 2021/11/14 19:09:13 by prochell         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -20,7 +32,7 @@ typedef struct s_player
 {
 	int	x;
 	int	y;
-} t_player;
+}	t_player;
 
 typedef struct s_win
 {
@@ -43,14 +55,17 @@ typedef struct s_all
 void	common_err(int err);
 void	map_err(int err);
 
-int		get_height(char *file_name);
-int		get_width(char *file_name);
-int		valid_symbol(char **arr, int i, int j, char s);
+int		get_height_file(char *file_name);
+int		get_width_file(char *file_name);
+int		get_height_arr(char **arr);
+int		get_width_arr(char *arr);
 
 void	read_file(char *file_name, t_all *data);
 void	check_map_validation(t_all *data);
-void	check_player(t_all *data);
 void	check_sympols(char **map);
+void	check_player(t_all *data);
 void	check_map(t_all *data);
+int		valid_symbol(char **arr, int i, int j, char s);
+void	check_borders(char **map, int i);
 
 #endif
