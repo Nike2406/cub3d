@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 19:04:12 by prochell          #+#    #+#             */
-/*   Updated: 2021/11/14 19:04:44 by prochell         ###   ########.fr       */
+/*   Updated: 2021/11/18 20:34:58 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	valid_symbol(char **arr, int i, int j, char s)
 {
-	if (arr[i + 1][j] == s || \
-		arr[i - 1][j] == s || \
-		arr[i][j + 1] == s || \
-		arr[i][j - 1] == s)
+	if (arr[i + 1][j] == s || !arr[i + 1][j] || \
+		arr[i - 1][j] == s || !arr[i - 1][j] || \
+		arr[i][j + 1] == s || !arr[i][j + 1] || \
+		arr[i][j - 1] == s || !arr[i][j - 1])
 		return (1);
 	return (0);
 }
