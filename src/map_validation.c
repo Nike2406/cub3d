@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 22:20:17 by prochell          #+#    #+#             */
-/*   Updated: 2021/11/18 21:07:39 by prochell         ###   ########.fr       */
+/*   Updated: 2021/11/18 21:24:14 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,5 @@ void	check_map_validation(t_all *data)
 	check_uncorrect_postion(data, data->player.plr_direction);
 	if (valid_symbol(data->map, data->player.x, data->player.y, ' '))
 		map_err(ERR_MAP);
+	check_plr_lock(data);
 }
