@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 19:04:12 by prochell          #+#    #+#             */
-/*   Updated: 2021/11/18 20:34:58 by prochell         ###   ########.fr       */
+/*   Updated: 2021/11/18 21:15:17 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,18 @@ void	check_borders(char **map, int i)
 			map_err(ERR_MAP);
 		j++;
 	}
+}
+
+void	check_plr_lock(t_all *data)
+{
+	int	x;
+	int	y;
+
+	x = data->player.x;
+	y = data->player.y;
+	if (data->map[x + 1][y] == '1' && \
+		data->map[x - 1][y] == '1' && \
+		data->map[x][y + 1] == '1' && \
+		data->map[x][y - 1] == '1')
+		map_err(ERR_PLR_LOCK);
 }

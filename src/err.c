@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:25:51 by prochell          #+#    #+#             */
-/*   Updated: 2021/11/14 20:46:14 by prochell         ###   ########.fr       */
+/*   Updated: 2021/11/18 21:14:07 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@ void	map_err(int err)
 		printf("The map contains forbidden symbols!\n");
 	else if (err == ERR_MAP)
 		printf("The map is not valid!\n");
+	else if (err == ERR_PLR_LOCK)
+		printf("Player locked!\n");
 	exit(1);
 }

@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 19:08:27 by prochell          #+#    #+#             */
-/*   Updated: 2021/11/14 20:59:24 by prochell         ###   ########.fr       */
+/*   Updated: 2021/11/18 21:15:29 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,13 @@
 # define ERR_PLAYER		1
 # define ERR_SYMBOL		2
 # define ERR_MAP		3
+# define ERR_PLR_LOCK	4
 
 typedef struct s_player
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
+	char	plr_direction;
 }	t_player;
 
 typedef struct s_win
@@ -71,9 +73,10 @@ void	read_file(char *file_name, t_all *data);
 void	check_map_validation(t_all *data);
 void	check_sympols(char **map);
 void	check_player(t_all *data);
-void	check_map(t_all *data);
+void	check_map_spaces(t_all *data, char s);
 int		valid_symbol(char **arr, int i, int j, char s);
 void	check_borders(char **map, int i);
+void	check_plr_lock(t_all *data);
 
 void	my_mlx_pixel_put(t_win *win, int x, int y, int color);
 
