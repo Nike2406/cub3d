@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:25:51 by prochell          #+#    #+#             */
-/*   Updated: 2021/11/18 21:14:07 by prochell         ###   ########.fr       */
+/*   Updated: 2021/11/21 12:16:33 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,12 @@ void	map_err(int err)
 	else if (err == ERR_PLR_LOCK)
 		printf("Player locked!\n");
 	exit(1);
+}
+
+int	keys_err(int code)
+{
+	if (code ==1)
+		ft_putendl("Red button Alert!");
+	exit(code);
+	return (1);
 }
