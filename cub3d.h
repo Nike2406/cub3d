@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 19:08:27 by prochell          #+#    #+#             */
-/*   Updated: 2021/11/21 12:16:40 by prochell         ###   ########.fr       */
+/*   Updated: 2021/11/21 13:48:16 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@
 # define ERR_SYMBOL		2
 # define ERR_MAP		3
 # define ERR_PLR_LOCK	4
+
+typedef struct	s_point
+{
+	int	x;
+	int	y;
+}	t_point;
 
 typedef struct s_player
 {
@@ -51,6 +57,8 @@ typedef struct s_win
 
 	int		img_width;
 	int		img_height;
+
+	int		zoom;
 }	t_win;
 
 typedef struct s_all
@@ -68,6 +76,8 @@ int		get_height_file(char *file_name);
 int		get_width_file(char *file_name);
 int		get_height_arr(char **arr);
 int		get_width_arr(char *arr);
+float	MOD(float a);
+float	MAX(float a, float b);
 
 void	read_file(char *file_name, t_all *data);
 void	check_map_validation(t_all *data);
@@ -78,9 +88,13 @@ int		valid_symbol(char **arr, int i, int j, char s);
 void	check_borders(char **map, int i);
 void	check_plr_lock(t_all *data);
 
+void	data_preset(t_all *data);
+void	render(t_win *win, t_all *data);
 void	my_mlx_pixel_put(t_win *win, int x, int y, int color);
 void	get_hook(t_win *win);
 int		deal_key(int key, t_win *win);
 int		keys_err(int code);
+
+void	draw(t_all *data);
 
 #endif

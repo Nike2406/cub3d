@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:44:49 by prochell          #+#    #+#             */
-/*   Updated: 2021/11/14 20:31:19 by prochell         ###   ########.fr       */
+/*   Updated: 2021/11/21 13:01:31 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,29 @@ void	clean(t_all *data)
 // 	return (width);
 // }
 
-// int	get_width_arr(char *arr)
-// {
-// 	int	i;
+int	get_width_arr(char *arr)
+{
+	int	i;
 
-// 	i = 0;
-// 	while (arr[i])
-// 		i++;
-// 	return (i);
-// }
+	i = 0;
+	while (arr[i])
+		i++;
+	return (i);
+}
+
+float	MOD(float a)
+{
+	if (a < 0)
+		return (-a);
+	else
+		return (a);
+}
+
+float	MAX(float a, float b)
+{
+	if (a < b)
+		return (b);
+	else
+		return (a);
+}
+

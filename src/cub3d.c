@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:22:16 by prochell          #+#    #+#             */
-/*   Updated: 2021/11/21 12:16:01 by prochell         ###   ########.fr       */
+/*   Updated: 2021/11/21 13:11:21 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,12 @@ void	get_hook(t_win *win)
 	mlx_hook(win->win, 17, 0, keys_err, win);
 }
 
-void	render(t_win *win)
+void	render(t_win *win, t_all *data)
 {
 	int		x;
 	int		y;
 	// void	*tmp;
 
-	win->img_width = 640;
-	win->img_height = 480;
 	x = 100;
 	y = 100;
 	// tmp = win->img;
@@ -37,13 +35,13 @@ void	render(t_win *win)
 	win->addr = mlx_get_data_addr(win->img, &win->bits_per_pixel,\
 		&win->line_length, &win->endian);
 
-	while (++y < 200)
-	{
-		x = 100;
-		while (++x < 200)
-			my_mlx_pixel_put(win, x, y, 0xFFFFFF);
-	}
-
+	// while (++y < 200)
+	// {
+	// 	x = 100;
+	// 	while (++x < 200)
+	// 		my_mlx_pixel_put(win, x, y, 0xFFFFFF);
+	// }
+	draw(data);
 	get_hook(win);
 	mlx_put_image_to_window(win->mlx, win->win, win->img, 0, 0);
 	// mlx_destroy_image(win->mlx, tmp);
@@ -69,6 +67,7 @@ int	main(int argc, char **argv)
 	data->win = (t_win *)malloc(sizeof(t_win));
 	if (!data->win)
 		common_err(ERR_MALLOC);
-	render(data->win);
+	data_preset(data);
+	render(data->win, data);
 	clean(data);
 }
