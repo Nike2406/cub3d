@@ -16,6 +16,8 @@ LIBFT_A		= libft/libft.a
 MINI_LIBX	= minilibx_macos/libmlx.a
 FRAMEWORK	= -framework OpenGL -framework AppKit
 
+RED_COLOR = \033[0;31m
+
 .PHONY: all clean fclean re bonus libft norm
 
 .o: .c $(INCLUDE)
@@ -25,6 +27,7 @@ all: libft mlx $(NAME)
 
 ${NAME}: $(OBJS) $(INCLUDE)
 	@$(CC) $(OBJS) $(LIBFT_A) $(MINI_LIBX) $(FRAMEWORK) -o $(NAME)
+	@echo "${GREEN_COLOR}It's done, my master${GREEN_COLOR}"
 
 bonus: libft $(NAME)
 

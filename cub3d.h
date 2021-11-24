@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 19:08:27 by prochell          #+#    #+#             */
-/*   Updated: 2021/11/21 18:42:27 by prochell         ###   ########.fr       */
+/*   Updated: 2021/11/24 21:02:09 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	check_borders(char **map, int i);
 void	check_plr_lock(t_all *data);
 
 void	data_preset(t_all *data);
+void	first_render(t_win *win, t_all *data);
 void	render(t_win *win, t_all *data);
 void	my_mlx_pixel_put(t_win *win, int x, int y, int color);
 void	get_hook(t_all *data);
