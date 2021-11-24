@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 19:08:27 by prochell          #+#    #+#             */
-/*   Updated: 2021/11/21 13:48:16 by prochell         ###   ########.fr       */
+/*   Updated: 2021/11/21 18:42:27 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,10 @@ typedef struct s_win
 	int		img_height;
 
 	int		zoom;
+
+	double	shift_x;
+	double	shift_y;
+	int		render_flag;
 }	t_win;
 
 typedef struct s_all
@@ -91,8 +95,8 @@ void	check_plr_lock(t_all *data);
 void	data_preset(t_all *data);
 void	render(t_win *win, t_all *data);
 void	my_mlx_pixel_put(t_win *win, int x, int y, int color);
-void	get_hook(t_win *win);
-int		deal_key(int key, t_win *win);
+void	get_hook(t_all *data);
+int		deal_key(int key, t_all *data);
 int		keys_err(int code);
 
 void	draw(t_all *data);

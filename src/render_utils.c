@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 20:48:20 by prochell          #+#    #+#             */
-/*   Updated: 2021/11/21 16:11:54 by prochell         ###   ########.fr       */
+/*   Updated: 2021/11/21 17:59:19 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,7 @@ void data_preset(t_all *data)
 	data->win->img_width = 1280;
 	data->win->img_height = 720;
 	data->win->zoom = 20;
+	data->win->shift_x = 0;
+	data->win->shift_y = 0;
+	data->win->render_flag = 0;
 }

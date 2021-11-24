@@ -6,55 +6,31 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 12:41:16 by prochell          #+#    #+#             */
-/*   Updated: 2021/11/21 16:14:36 by prochell         ###   ########.fr       */
+/*   Updated: 2021/11/21 18:50:37 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-// void	bresenham(t_all *data, t_point *p, t_point *p1)
-// {
-// 	double	x_step;
-// 	double	y_step;
-// 	long	max;
+void	print_player(t_win *win, int start_x, int start_y, int color)
+{
+	int	y;
+	int	x;
 
-// 	// get_position(data, p, p1);
-// 	p->x *= data->win->zoom;
-// 	p->y *= data->win->zoom;
-// 	p1->x *= data->win->zoom;
-// 	p1->y *= data->win->zoom;
-
-// 	x_step = p1->x - p->x;
-// 	y_step = p1->y - p->y;
-// 	max = MAX(MOD(x_step), MOD(y_step));
-// 	x_step /= max;
-// 	y_step /= max;
-
-// 	while ((int)(p->x - p1->x) || (int)(p->y - p1->y))
-// 	{
-// 		if ((p->x >= 0 && p->x <= data->win->img_width) && \
-// 		(p->y >= 0 && p->y < data->win->img_height))
-// 			my_mlx_pixel_put(data->win, p->x, p->y, 0xFFFFFF);
-// 		p->x += x_step;
-// 		p->y += y_step;
-// 	}
-// }
-
-// void	pre_brase(int f, t_point *p, t_point *p1, int x, int y)
-// {
-// 	p->x = x;
-// 	p->y = y;
-// 	if (!f)
-// 	{
-// 		p1->x = p->x + 1;
-// 		p1->y = p->y;
-// 	}
-// 	else
-// 	{
-// 		p1->x = p->x;
-// 		p1->y = p->y + 1;
-// 	}
-// }
+	start_y = start_y + win->zoom / 4;
+	start_x = start_x + win->zoom / 4;
+	y = start_y;
+	while (y < win->zoom / 2 + start_y)
+	{
+		x = start_x;
+		while (x < win->zoom / 2 + start_x)
+		{
+			my_mlx_pixel_put(win, x, y, color);
+			x++;
+		}
+		y++;
+	}
+}
 
 void	print_rect(t_win *win, int start_x, int start_y, int color)
 {
@@ -96,35 +72,6 @@ void	draw(t_all *data)
 		}
 		y++;
 	}
+	print_player(data->win, data->player.y * data->win->zoom + data->win->shift_y, \
+		data->player.x * data->win->zoom + data->win->shift_x, 0x00FF00);
 }
-
-// void	draw(t_all *data)
-// {
-// 	t_point	p;
-// 	t_point	p1;
-// 	int	x;
-// 	int	y;
-// 	int	height;
-// 	int	width;
-
-// 	height = get_height_arr(data->map);
-// 	y = -1;
-// 	while (++y < height)
-// 	{
-// 		x = -1;
-// 		width = get_width_arr(data->map[y]);
-// 		while (++x < width)
-// 		{
-// 			if (x < width - 1)
-// 			{
-// 				pre_brase(0, &p, &p1, x, y);
-// 				bresenham(data, &p, &p1);
-// 			}
-// 			if (y < height - 1)
-// 			{
-// 				pre_brase(1, &p, &p1, x, y);
-// 				bresenham(data, &p, &p1);
-// 			}
-// 		}
-// 	}
-// }
