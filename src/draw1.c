@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 12:41:16 by prochell          #+#    #+#             */
-/*   Updated: 2021/11/21 18:50:37 by prochell         ###   ########.fr       */
+/*   Updated: 2021/11/28 19:43:45 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	print_player(t_win *win, int start_x, int start_y, int color)
 	int	y;
 	int	x;
 
+	// впозицонирование точки по центру
 	start_y = start_y + win->zoom / 4;
 	start_x = start_x + win->zoom / 4;
 	y = start_y;
@@ -29,6 +30,23 @@ void	print_player(t_win *win, int start_x, int start_y, int color)
 			x++;
 		}
 		y++;
+	}
+}
+
+void	player_layer(t_all *data)
+{
+	int	tmp_x;
+	int	tmp_y;
+
+	tmp_y = data->player.y;
+	tmp_x = data->player.x;
+	while (data->map[(int)(tmp_y / data->win->zoom)]\
+		[(int)(tmp_x / data->win->zoom)] != '1')
+	{
+		// printf("x-%d, y-%d", data->player.x, data->player.y);
+		tmp_x += cos(data->player.plr_direction);
+		tmp_y += sin(data->player.plr_direction);
+		my_mlx_pixel_put(data->win, tmp_x, tmp_y, 0x00FF00);
 	}
 }
 
@@ -74,4 +92,5 @@ void	draw(t_all *data)
 	}
 	print_player(data->win, data->player.y * data->win->zoom + data->win->shift_y, \
 		data->player.x * data->win->zoom + data->win->shift_x, 0x00FF00);
+	player_layer(data);
 }

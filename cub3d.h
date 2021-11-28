@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 19:08:27 by prochell          #+#    #+#             */
-/*   Updated: 2021/11/24 21:02:09 by prochell         ###   ########.fr       */
+/*   Updated: 2021/11/28 19:26:32 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_player
 {
 	int		x;
 	int		y;
-	char	plr_direction;
+	double	plr_direction;
 }	t_player;
 
 typedef struct s_win
@@ -91,6 +91,7 @@ void	check_map_spaces(t_all *data, char s);
 int		valid_symbol(char **arr, int i, int j, char s);
 void	check_borders(char **map, int i);
 void	check_plr_lock(t_all *data);
+void	preset_player_direction(t_all *data, char s);
 
 void	data_preset(t_all *data);
 void	first_render(t_win *win, t_all *data);
