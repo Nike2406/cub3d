@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 19:08:27 by prochell          #+#    #+#             */
-/*   Updated: 2021/11/28 19:26:32 by prochell         ###   ########.fr       */
+/*   Updated: 2021/11/29 22:30:22 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,51 @@
 # define ERR_SYMBOL		2
 # define ERR_MAP		3
 # define ERR_PLR_LOCK	4
+
+/*			Lodev version			*/
+// Start
+/*-------------------------------------*/
+#define texWidth 64
+#define texHeight 64
+#define mapWidth 24
+#define mapHeight 24
+#define win_width 640
+#define win_height 480
+
+typedef struct	s_img
+{
+	void	*img;
+	int		*data;
+
+	int		size_l;
+	int		bpp;
+	int		endian;
+	int		img_width;
+	int		img_height;
+}				t_img;
+
+typedef struct	s_info
+{
+	double posX;
+	double posY;
+	double dirX;
+	double dirY;
+	double planeX;
+	double planeY;
+	void	*mlx;
+	void	*win;
+	t_img	img;
+	int		buf[win_height][win_width];
+	int		**texture;
+	double	moveSpeed;
+	double	rotSpeed;
+	//map
+	char	**world_map;
+}				t_info;
+
+int	start_lodev_version(char **world_map);
+/*-------------------------------------*/
+// End
 
 typedef struct	s_point
 {
