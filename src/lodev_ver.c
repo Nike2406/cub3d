@@ -6,11 +6,38 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 19:53:36 by prochell          #+#    #+#             */
-/*   Updated: 2021/11/29 22:45:46 by prochell         ###   ########.fr       */
+/*   Updated: 2021/11/30 20:43:40 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+// int	worldMap[24][24] = {
+// 							{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+// 							{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+// 							{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+// 							{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+// 							{1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
+// 							{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
+// 							{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
+// 							{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
+// 							{1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
+// 							{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+// 							{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+// 							{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+// 							{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+// 							{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+// 							{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+// 							{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+// 							{1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+// 							{1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+// 							{1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+// 							{1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+// 							{1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+// 							{1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+// 							{1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+// 							{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+// 						};
 
 int	key_press(int key, t_info *info)
 {
@@ -146,7 +173,7 @@ void	calc(t_info *info)
 				mapY += stepY;
 				side = 1;
 			}
-			if (info->world_map[mapX][mapY] > 0)
+			if (info->world_map[mapY][mapX] > 0)
 				hit = 1;
 		}
 		if (side == 0)
@@ -229,14 +256,14 @@ void	load_texture(t_info *info)
 {
 	t_img	img;
 
-	load_image(info, info->texture[0], "./textures/cat.xpm", &img);
-	// load_image(info, info->texture[1], "./textures/redbrick.xpm", &img);
-	// load_image(info, info->texture[2], "./textures/purplestone.xpm", &img);
-	// load_image(info, info->texture[3], "./textures/greystone.xpm", &img);
-	// load_image(info, info->texture[4], "./textures/bluestone.xpm", &img);
-	// load_image(info, info->texture[5], "./textures/mossy.xpm", &img);
-	// load_image(info, info->texture[6], "./textures/wood.xpm", &img);
-	// load_image(info, info->texture[7], "./textures/colorstone.xpm", &img);
+	load_image(info, info->texture[0], "./textures/eagle.xpm", &img);
+	load_image(info, info->texture[1], "./textures/redbrick.xpm", &img);
+	load_image(info, info->texture[2], "./textures/purplestone.xpm", &img);
+	load_image(info, info->texture[3], "./textures/greystone.xpm", &img);
+	load_image(info, info->texture[4], "./textures/bluestone.xpm", &img);
+	load_image(info, info->texture[5], "./textures/mossy.xpm", &img);
+	load_image(info, info->texture[6], "./textures/wood.xpm", &img);
+	load_image(info, info->texture[7], "./textures/colorstone.xpm", &img);
 }
 
 int	start_lodev_version(char **world_map)
