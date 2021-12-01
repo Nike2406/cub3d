@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 19:53:36 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/01 20:15:57 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/01 20:49:36 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,7 +210,7 @@ void	calc(t_info *info)
 			texY = (int)texPos & (texHeight - 1);
 			texPos += step;
 			color = info->texture[texNum][texHeight * texY + texX];
-			if (side == 1)
+			if (side == '1')
 				color = (color >> 1) & 8355711;
 			info->buf[y][x] = color;
 			y++;
