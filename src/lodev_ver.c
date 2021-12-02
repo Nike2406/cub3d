@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lodev_ver.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: signacia <signacia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 19:53:36 by prochell          #+#    #+#             */
-/*   Updated: 2021/11/30 20:56:24 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/02 11:06:32 by signacia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,7 +210,7 @@ void	calc(t_info *info)
 			texY = (int)texPos & (texHeight - 1);
 			texPos += step;
 			color = info->texture[texNum][texHeight * texY + texX];
-			if (side == 1)
+			if (side == '1')
 				color = (color >> 1) & 8355711;
 			info->buf[y][x] = color;
 			y++;
@@ -266,7 +266,7 @@ void	load_texture(t_info *info)
 	load_image(info, info->texture[7], "./textures/colorstone.xpm", &img);
 }
 
-int	start_lodev_version(char **world_map)
+int	start_lodev_version(char **world_map, t_all *data)
 {
 	t_info	info;
 	int		i;
@@ -274,8 +274,8 @@ int	start_lodev_version(char **world_map)
 
 	info.mlx = mlx_init();
 
-	info.posX = 22.0;
-	info.posY = 11.5;
+	info.posX = data->player.x;//22.0;
+	info.posY = data->player.y;//11.5;
 	info.dirX = -1.0;
 	info.dirY = 0.0;
 	info.planeX = 0.0;
