@@ -6,11 +6,13 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 19:53:36 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/01 21:49:40 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/02 20:14:47 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+int	main_loop(t_info *info);
 
 int	world_map[24][24] = {
 							{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
@@ -47,6 +49,7 @@ int	key_press(int key, t_info *info)
 			info->posX += info->dirX * info->moveSpeed;
 		if (!world_map[(int)(info->posX)][(int)(info->posY + info->dirY * info->moveSpeed)])
 			info->posY += info->dirY * info->moveSpeed;
+		main_loop(info);
 	}
 	//move backwards if no wall behind you
 	if (key == 1)
@@ -55,6 +58,7 @@ int	key_press(int key, t_info *info)
 			info->posX -= info->dirX * info->moveSpeed;
 		if (!world_map[(int)(info->posX)][(int)(info->posY - info->dirY * info->moveSpeed)])
 			info->posY -= info->dirY * info->moveSpeed;
+		main_loop(info);
 	}
 	//rotate to the right
 	if (key == 2)
@@ -66,6 +70,7 @@ int	key_press(int key, t_info *info)
 		double oldPlaneX = info->planeX;
 		info->planeX = info->planeX * cos(-info->rotSpeed) - info->planeY * sin(-info->rotSpeed);
 		info->planeY = oldPlaneX * sin(-info->rotSpeed) + info->planeY * cos(-info->rotSpeed);
+		main_loop(info);
 	}
 	//rotate to the left
 	if (key == 0)
@@ -77,6 +82,7 @@ int	key_press(int key, t_info *info)
 		double oldPlaneX = info->planeX;
 		info->planeX = info->planeX * cos(info->rotSpeed) - info->planeY * sin(info->rotSpeed);
 		info->planeY = oldPlaneX * sin(info->rotSpeed) + info->planeY * cos(info->rotSpeed);
+		main_loop(info);
 	}
 	if (key == 53)
 		exit(0);
@@ -87,11 +93,24 @@ void	verLine(t_info *info, int x, int y1, int y2, int color)
 {
 	int	y;
 
-	y = y1;
+
+	// y = y1;
+	y = 0;
+	while (y <= y1)
+	{
+		mlx_pixel_put(info->mlx, info->win, x, y, 0x000000);
+		y++;
+	}
+	// y = y1;
 	while (y <= y2)
 	{
 		mlx_pixel_put(info->mlx, info->win, x, y, color);
 		y++;
+	}
+	while (y2 <= win_height)
+	{
+		mlx_pixel_put(info->mlx, info->win, x, y2, 0x000000);
+		y2++;
 	}
 }
 
@@ -217,13 +236,13 @@ int	start_lodev_version(char **world_map, t_all *data)
 	(void)world_map;
 
 	info.posX = 12;
-	info.posY = 5;
+	info.posY = 2;
 	info.dirX = -1.0;
 	info.dirY = 0.0;
 	info.planeX = 0.0;
 	info.planeY = 0.66;
-	info.moveSpeed = 0.05;
-	info.rotSpeed = 0.05;
+	info.moveSpeed = 0.15;
+	info.rotSpeed = 0.15;
 
 	// info.world_map = world_map;
 
