@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 19:53:36 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/01 20:49:36 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/04 22:19:26 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,20 @@ int	key_press(int key, t_info *info)
 {
 	if (key == 13)
 	{
-		if (!info->world_map[(int)(info->posX + info->dirX * info->moveSpeed)][(int)(info->posY)])
+		if (ft_strchr(" 0",info->world_map[(int)(info->posX + info->dirX * info->moveSpeed)][(int)(info->posY)]))
 			info->posX += info->dirX * info->moveSpeed;
-		if (!info->world_map[(int)(info->posX)][(int)(info->posY + info->dirY * info->moveSpeed)])
+		if (ft_strchr(" 0",info->world_map[(int)(info->posX)][(int)(info->posY + info->dirY * info->moveSpeed)]))
 			info->posY += info->dirY * info->moveSpeed;
+		// if (!info->world_map[(int)(info->posX)][(int)(info->posY + info->dirY * info->moveSpeed)])
 	}
 	//move backwards if no wall behind you
 	if (key == 1)
 	{
-		if (!info->world_map[(int)(info->posX - info->dirX * info->moveSpeed)][(int)(info->posY)])
+		// if (!info->world_map[(int)(info->posX - info->dirX * info->moveSpeed)][(int)(info->posY)])
+		if (ft_strchr(" 0", info->world_map[(int)(info->posX - info->dirX * info->moveSpeed)][(int)(info->posY)]))
 			info->posX -= info->dirX * info->moveSpeed;
-		if (!info->world_map[(int)(info->posX)][(int)(info->posY - info->dirY * info->moveSpeed)])
+		// if (!info->world_map[(int)(info->posX)][(int)(info->posY - info->dirY * info->moveSpeed)])
+		if (ft_strchr(" 0", info->world_map[(int)(info->posX)][(int)(info->posY - info->dirY * info->moveSpeed)]))
 			info->posY -= info->dirY * info->moveSpeed;
 	}
 	//rotate to the right
@@ -88,6 +91,13 @@ void	draw_lodev(t_info *info)
 	int	x;
 	int	y;
 
+	// y = 0;
+	// while (y <= y1)
+	// {
+	// 	printf("%s\n", info->win);
+	// 	my_mlx_pixel_put(info->win, x, y, 0x000000);
+	// 	y++;
+	// }
 	y = -1;
 	while (++y < win_height)
 	{
@@ -165,18 +175,18 @@ void	calc(t_info *info)
 			{
 				sideDistX += deltaDistX;
 				mapX += stepX;
-				side = 0;
+				side = '0';
 			}
 			else
 			{
 				sideDistY += deltaDistY;
 				mapY += stepY;
-				side = 1;
+				side = '1';
 			}
-			if (info->world_map[mapY][mapX] > 0)
+			if (info->world_map[mapY][mapX] == '1')
 				hit = 1;
 		}
-		if (side == 0)
+		if (side == '0')
 			perpWallDist = (mapX - info->posX + (1 - stepX) / 2) / rayDirX;
 		else
 			perpWallDist = (mapY - info->posY + (1 - stepY) / 2) / rayDirY;
@@ -188,22 +198,28 @@ void	calc(t_info *info)
 		if(drawEnd >= win_height)
 			drawEnd = win_height - 1;
 		texNum = info->world_map[mapX][mapY];
-		if (side == 0)
+		if (side == '0')
 			wallX = info->posY + perpWallDist * rayDirY;
 		else
 			wallX = info->posX + perpWallDist * rayDirX;
 		wallX -= floor(wallX);
 
 		texX = (int)(wallX * (double)texWidth);
-		if (side == 0 && rayDirX > 0)
+		if (side == '0' && rayDirX > 0)
 			texX = texWidth - texX - 1;
-		if (side == 1 && rayDirY < 0)
+		if (side == '1' && rayDirY < 0)
 			texX = texWidth - texX - 1;
 		step = 1.0 * texHeight / lineHeight;
 		texPos = (drawStart - win_height / 2 + lineHeight / 2) * step;
 
 		int	texY;
 		int	color;
+		y = 0;
+		while (y < drawStart)
+		{
+			info->buf[y][x] = 0xFF0000;
+			y++;
+		}
 		y = drawStart;
 		while (y < drawEnd)
 		{
@@ -213,6 +229,11 @@ void	calc(t_info *info)
 			if (side == '1')
 				color = (color >> 1) & 8355711;
 			info->buf[y][x] = color;
+			y++;
+		}
+		while (y < win_height)
+		{
+			info->buf[y][x] = 0x00FF00;
 			y++;
 		}
 		x++;
@@ -271,11 +292,11 @@ int	start_lodev_version(char **world_map, t_all *data)
 	t_info	info;
 	int		i;
 	int		j;
+	(void)data;
 
 	info.mlx = mlx_init();
-
-	info.posX = data->player.x;//22.0;
-	info.posY = data->player.y;//11.5;
+	info.posX = data->player.y;//22.0;
+	info.posY = data->player.x;//11.5;
 	info.dirX = -1.0;
 	info.dirY = 0.0;
 	info.planeX = 0.0;

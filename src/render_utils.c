@@ -6,17 +6,17 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 20:48:20 by prochell          #+#    #+#             */
-/*   Updated: 2021/11/28 19:33:18 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/04 20:13:55 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	my_mlx_pixel_put(t_win *win, int x, int y, int color) // test
+void	my_mlx_pixel_put(t_info *win, int x, int y, int color) // test
 {
 	char	*dst;
 
-	dst = win->addr + (y * win->line_length + x * (win->bits_per_pixel / 8));
+	dst = win->img.addr + (y * win->img.size_l + x * (win->img.bpp / 8));
 	*(unsigned int *)dst = color;
 }
 

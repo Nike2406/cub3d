@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:22:16 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/01 21:53:05 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/04 22:08:00 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	first_render(t_win *win, t_all *data)
 		win->img_height);
 	win->addr = mlx_get_data_addr(win->img, &win->bits_per_pixel,\
 		&win->line_length, &win->endian);
-	draw(data);
+	// draw(data);
 	mlx_put_image_to_window(win->mlx, win->win, win->img, 0, 0);
 	get_hook(data);
 	mlx_loop(win->mlx);
@@ -43,7 +43,7 @@ void	render(t_win *win, t_all *data)
 	win->addr = mlx_get_data_addr(win->img, &win->bits_per_pixel,\
 		&win->line_length, &win->endian);
 	mlx_clear_window(win->mlx, win->win);
-	draw(data);
+	// draw(data);
 	mlx_put_image_to_window(win->mlx, win->win, win->img, 0, 0);
 	get_hook(data);
 	mlx_destroy_image(win->mlx, tmp);
