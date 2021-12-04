@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 19:08:27 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/04 22:07:42 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/04 23:05:21 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,12 @@ typedef struct s_player
 	double	plr_direction;
 }	t_player;
 
+typedef struct s_map
+{
+	int		width;
+	int		height;
+}	t_map;
+
 typedef struct s_win
 {
 	void	*mlx;
@@ -68,8 +74,9 @@ typedef struct s_win
 typedef struct s_all
 {
 	t_win		*win;
-	char		**map;
+	char		**map_arr;
 	t_player	player;
+	t_map		map;
 }	t_all;
 
 /*			Lodev version			*/

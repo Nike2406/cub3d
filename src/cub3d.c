@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:22:16 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/04 22:08:00 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/04 23:10:06 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ int	main(int argc, char **argv)
 	data->win = (t_win *)malloc(sizeof(t_win));
 	if (!data->win)
 		common_err(ERR_MALLOC);
-	start_lodev_version(data->map, data);
+	start_lodev_version(data->map_arr, data);
 	// int i = -1;
-	// while (data->map[++i])
-	// 	printf("%s\n", data->map[i]);
+	// while (data->map_arr[++i])
+	// 	printf("%s\n", data->map_arr[i]);
 	// data_preset(data);
 	// first_render(data->win, data);
 	clean(data);

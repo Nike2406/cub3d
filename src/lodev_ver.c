@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 19:53:36 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/04 22:19:26 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/05 00:27:36 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ int	key_press(int key, t_info *info)
 {
 	if (key == 13)
 	{
-		if (ft_strchr(" 0",info->world_map[(int)(info->posX + info->dirX * info->moveSpeed)][(int)(info->posY)]))
+		if (ft_strchr(" 0",info->world_map[(int)(info->posY)][(int)(info->posX + info->dirX * info->moveSpeed)]))
 			info->posX += info->dirX * info->moveSpeed;
-		if (ft_strchr(" 0",info->world_map[(int)(info->posX)][(int)(info->posY + info->dirY * info->moveSpeed)]))
+		if (ft_strchr(" 0",info->world_map[(int)(info->posY + info->dirY * info->moveSpeed)][(int)(info->posX)]))
 			info->posY += info->dirY * info->moveSpeed;
 		// if (!info->world_map[(int)(info->posX)][(int)(info->posY + info->dirY * info->moveSpeed)])
 	}
@@ -53,10 +53,10 @@ int	key_press(int key, t_info *info)
 	if (key == 1)
 	{
 		// if (!info->world_map[(int)(info->posX - info->dirX * info->moveSpeed)][(int)(info->posY)])
-		if (ft_strchr(" 0", info->world_map[(int)(info->posX - info->dirX * info->moveSpeed)][(int)(info->posY)]))
+		if (ft_strchr(" 0", info->world_map[(int)(info->posY)][(int)(info->posX - info->dirX * info->moveSpeed)]))
 			info->posX -= info->dirX * info->moveSpeed;
 		// if (!info->world_map[(int)(info->posX)][(int)(info->posY - info->dirY * info->moveSpeed)])
-		if (ft_strchr(" 0", info->world_map[(int)(info->posX)][(int)(info->posY - info->dirY * info->moveSpeed)]))
+		if (ft_strchr(" 0", info->world_map[(int)(info->posY - info->dirY * info->moveSpeed)][(int)(info->posX)]))
 			info->posY -= info->dirY * info->moveSpeed;
 	}
 	//rotate to the right
@@ -83,6 +83,7 @@ int	key_press(int key, t_info *info)
 	}
 	if (key == 53)
 		exit(0);
+	printf("x - %f, y - %f\n", info->posX, info->posY);
 	return (0);
 }
 
@@ -197,7 +198,7 @@ void	calc(t_info *info)
 		drawEnd = lineHeight / 2 + win_height / 2;
 		if(drawEnd >= win_height)
 			drawEnd = win_height - 1;
-		texNum = info->world_map[mapX][mapY];
+		texNum = info->world_map[mapY][mapX];
 		if (side == '0')
 			wallX = info->posY + perpWallDist * rayDirY;
 		else
@@ -225,7 +226,7 @@ void	calc(t_info *info)
 		{
 			texY = (int)texPos & (texHeight - 1);
 			texPos += step;
-			color = info->texture[texNum][texHeight * texY + texX];
+			color = info->texture[texNum % 8][texHeight * texY + texX]; // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< % 8
 			if (side == '1')
 				color = (color >> 1) & 8355711;
 			info->buf[y][x] = color;
@@ -292,11 +293,21 @@ int	start_lodev_version(char **world_map, t_all *data)
 	t_info	info;
 	int		i;
 	int		j;
-	(void)data;
+	// (void)data;
 
+	float m = 0;
+	float n = 0;
 	info.mlx = mlx_init();
-	info.posX = data->player.y;//22.0;
-	info.posY = data->player.x;//11.5;
+	if (data->map_arr[data->player.y + 1][data->player.x] == '1')
+		m = -0.5;
+	if (data->map_arr[data->player.y][data->player.x + 1] == '1')
+		n = -0.5;
+	if (data->map_arr[data->player.y - 1][data->player.x] == '1')
+		m = 0.5;
+	if (data->map_arr[data->player.y][data->player.x - 1] == '1')
+		n = 0.5;
+	info.posX = data->player.x + n;//22.0;
+	info.posY = data->player.y + m;//11.5;
 	info.dirX = -1.0;
 	info.dirY = 0.0;
 	info.planeX = 0.0;
@@ -362,7 +373,6 @@ int	start_lodev_version(char **world_map, t_all *data)
 	info.win = mlx_new_window(info.mlx, win_width, win_height, "cub3D");
 	info.img.img = mlx_new_image(info.mlx, win_width, win_height);
 	info.img.data = (int *)mlx_get_data_addr(info.img.img, &info.img.bpp, &info.img.size_l, &info.img.endian);
-
 	mlx_loop_hook(info.mlx, &main_loop, &info);
 	mlx_hook(info.win, 2, 0, &key_press, &info);
 
