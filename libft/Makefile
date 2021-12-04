@@ -6,7 +6,7 @@
 #    By: prochell <prochell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/19 16:33:36 by locus2            #+#    #+#              #
-#    Updated: 2021/07/31 17:07:31 by prochell         ###   ########.fr        #
+#    Updated: 2021/12/05 00:56:08 by prochell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ SRCS 		= ft_memset.c ft_putstr.c ft_bzero.c \
 			ft_putchar_fd.c ft_putstr_fd.c \
 			ft_putendl_fd.c ft_putnbr_fd.c \
 			ft_split.c ft_putchar.c ft_putendl.c \
-			ft_putnbr.c ft_strcpy.c ft_wdcounter.c
+			ft_putnbr.c ft_strcpy.c ft_wdcounter.c \
+			ft_strrev.c
 
 SRCS_BNS	= ft_lstnew.c ft_lstadd_front.c \
 			ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \

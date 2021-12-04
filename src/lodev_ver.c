@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 19:53:36 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/05 00:27:36 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/05 00:53:50 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -314,33 +314,6 @@ int	start_lodev_version(char **world_map, t_all *data)
 	info.planeY = 0.66;
 	info.world_map = world_map;
 
-	// i = -1;
-	// while (world_map[++i])
-	// 	printf("%s\n", world_map[i]);
-
-	// info.world_map = ft_calloc(get_height_arr(world_map) + 1, \
-	// 	 sizeof(int *));
-	// i = -1;
-	// while (world_map[++i])
-	// {
-	// 	info.world_map[i] = ft_calloc(get_width_arr(world_map[i]) + 1, \
-	// 	 sizeof(int));
-	// }
-
-	// i = -1;
-	// while (world_map[++i])
-	// {
-	// 	j = -1;
-	// 	while (world_map[i][++j])
-	// 	{
-	// 		info.world_map[i][j] = ft_atoi(&world_map[i][j]);
-	// 		// printf("%d", info.world_map[i][j]);
-	// 	}
-	// 	printf("\n");
-	// }
-
-	// Заполнение исходного массива 0-ми
-	// memset()?
 	i = -1;
 	while (++i < win_height)
 	{
