@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 19:04:12 by prochell          #+#    #+#             */
-/*   Updated: 2021/11/18 21:23:50 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/04 23:02:56 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	check_plr_lock(t_all *data)
 
 	x = data->player.x;
 	y = data->player.y;
-	if (data->map[x + 1][y] == '1' && \
-		data->map[x - 1][y] == '1' && \
-		data->map[x][y + 1] == '1' && \
-		data->map[x][y - 1] == '1')
+	if (data->map_arr[x + 1][y] == '1' && \
+		data->map_arr[x - 1][y] == '1' && \
+		data->map_arr[x][y + 1] == '1' && \
+		data->map_arr[x][y - 1] == '1')
 		map_err(ERR_PLR_LOCK);
 }

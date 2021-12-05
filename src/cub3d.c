@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:22:16 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/01 21:53:05 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/04 23:10:06 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	first_render(t_win *win, t_all *data)
 		win->img_height);
 	win->addr = mlx_get_data_addr(win->img, &win->bits_per_pixel,\
 		&win->line_length, &win->endian);
-	draw(data);
+	// draw(data);
 	mlx_put_image_to_window(win->mlx, win->win, win->img, 0, 0);
 	get_hook(data);
 	mlx_loop(win->mlx);
@@ -43,7 +43,7 @@ void	render(t_win *win, t_all *data)
 	win->addr = mlx_get_data_addr(win->img, &win->bits_per_pixel,\
 		&win->line_length, &win->endian);
 	mlx_clear_window(win->mlx, win->win);
-	draw(data);
+	// draw(data);
 	mlx_put_image_to_window(win->mlx, win->win, win->img, 0, 0);
 	get_hook(data);
 	mlx_destroy_image(win->mlx, tmp);
@@ -63,10 +63,10 @@ int	main(int argc, char **argv)
 	data->win = (t_win *)malloc(sizeof(t_win));
 	if (!data->win)
 		common_err(ERR_MALLOC);
-	start_lodev_version(data->map, data);
+	start_lodev_version(data->map_arr, data);
 	// int i = -1;
-	// while (data->map[++i])
-	// 	printf("%s\n", data->map[i]);
+	// while (data->map_arr[++i])
+	// 	printf("%s\n", data->map_arr[i]);
 	// data_preset(data);
 	// first_render(data->win, data);
 	clean(data);

@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 19:08:27 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/01 20:16:56 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/04 23:05:21 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,12 @@ typedef struct s_player
 	double	plr_direction;
 }	t_player;
 
+typedef struct s_map
+{
+	int		width;
+	int		height;
+}	t_map;
+
 typedef struct s_win
 {
 	void	*mlx;
@@ -68,8 +74,9 @@ typedef struct s_win
 typedef struct s_all
 {
 	t_win		*win;
-	char		**map;
+	char		**map_arr;
 	t_player	player;
+	t_map		map;
 }	t_all;
 
 /*			Lodev version			*/
@@ -86,6 +93,7 @@ typedef struct	s_img
 {
 	void	*img;
 	int		*data;
+	char	*addr;
 
 	int		size_l;
 	int		bpp;
@@ -141,11 +149,11 @@ void	preset_player_direction(t_all *data, char s);
 void	data_preset(t_all *data);
 void	first_render(t_win *win, t_all *data);
 void	render(t_win *win, t_all *data);
-void	my_mlx_pixel_put(t_win *win, int x, int y, int color);
+void	my_mlx_pixel_put(t_info *win, int x, int y, int color);
 void	get_hook(t_all *data);
 int		deal_key(int key, t_all *data);
 int		keys_err(int code);
 
-void	draw(t_all *data);
+// void	draw(t_all *data);
 
 #endif

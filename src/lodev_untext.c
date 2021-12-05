@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 19:53:36 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/02 20:14:47 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/04 20:12:03 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,18 +98,19 @@ void	verLine(t_info *info, int x, int y1, int y2, int color)
 	y = 0;
 	while (y <= y1)
 	{
-		mlx_pixel_put(info->mlx, info->win, x, y, 0x000000);
+		printf("%s\n", info->win);
+		my_mlx_pixel_put(info->win, x, y, 0x000000);
 		y++;
 	}
 	// y = y1;
 	while (y <= y2)
 	{
-		mlx_pixel_put(info->mlx, info->win, x, y, color);
+		my_mlx_pixel_put(info->win, x, y, color);
 		y++;
 	}
 	while (y2 <= win_height)
 	{
-		mlx_pixel_put(info->mlx, info->win, x, y2, 0x000000);
+		my_mlx_pixel_put(info->win, x, y2, 0x000000);
 		y2++;
 	}
 }
@@ -247,6 +248,13 @@ int	start_lodev_version(char **world_map, t_all *data)
 	// info.world_map = world_map;
 
 	info.win = mlx_new_window(info.mlx, win_width, win_height, "cub3D");
+
+	void	*tmp;
+	tmp = info.img.img;
+	info.img.addr = mlx_new_image(info.mlx, win_width, win_height);
+	info.img.addr = mlx_get_data_addr(info.img.img, &info.img.bpp,\
+		&info.img.size_l, &info.img.endian);
+
 	mlx_loop_hook(info.mlx, &main_loop, &info);
 	mlx_hook(info.win, 2, 0, &key_press, &info);
 

@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:44:49 by prochell          #+#    #+#             */
-/*   Updated: 2021/11/21 13:01:31 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/04 22:50:00 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,31 +50,35 @@ void	clean(t_all *data)
 	int	i;
 
 	i = -1;
-	while (data->map[++i])
-		free(data->map[i]);
-	free(data->map);
+	while (data->map_arr[++i])
+		free(data->map_arr[i]);
+	free(data->map_arr);
 	free(data);
 }
 
-// int	get_width_file(char *file_name)
-// {
-// 	char	*line;
-// 	int		fd;
-// 	int		width;
+int	get_width_file(char *file_name)
+{
+	char	*line;
+	int		fd;
+	int		width;
+	int		tmp;
 
-// 	line = NULL;
-// 	fd = open(file_name, O_RDONLY, 0);
-// 	if (fd < 0)
-// 		common_err(ERR_READING);
-// 	while (get_next_line(fd, &line))
-// 	{
-// 		width = ft_wdcounter(line, ' ');
-// 		free(line);
-// 	}
-// 	free(line);
-// 	close(fd);
-// 	return (width);
-// }
+	line = NULL;
+	width = 0;
+	fd = open(file_name, O_RDONLY, 0);
+	if (fd < 0)
+		common_err(ERR_READING);
+	while (get_next_line(fd, &line))
+	{
+		tmp = get_width_arr(line);
+		if (tmp > width)
+			width = tmp;
+		free(line);
+	}
+	free(line);
+	close(fd);
+	return (width);
+}
 
 int	get_width_arr(char *arr)
 {
