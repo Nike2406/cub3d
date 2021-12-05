@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 19:53:36 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/05 00:53:50 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/05 11:42:45 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,7 +226,7 @@ void	calc(t_info *info)
 		{
 			texY = (int)texPos & (texHeight - 1);
 			texPos += step;
-			color = info->texture[texNum % 8][texHeight * texY + texX]; // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< % 8
+			color = info->texture[texNum % 8][texHeight * texY + texX];
 			if (side == '1')
 				color = (color >> 1) & 8355711;
 			info->buf[y][x] = color;
@@ -306,8 +306,8 @@ int	start_lodev_version(char **world_map, t_all *data)
 		m = 0.5;
 	if (data->map_arr[data->player.y][data->player.x - 1] == '1')
 		n = 0.5;
-	info.posX = data->player.x + n;//22.0;
-	info.posY = data->player.y + m;//11.5;
+	info.posX = data->player.x + n;
+	info.posY = data->player.y + m;
 	info.dirX = -1.0;
 	info.dirY = 0.0;
 	info.planeX = 0.0;
