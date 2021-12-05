@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 19:53:36 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/05 15:08:03 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/05 19:38:42 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,20 @@ int	key_press(int key, t_info *info)
 {
 	if (key == 13)
 	{
-		if (ft_strchr(" 0",info->world_map[(int)(info->posY)][(int)(info->posX + info->dirX * info->moveSpeed)]))
+		if (ft_strchr(" 0",info->map_arr[(int)(info->posY)][(int)(info->posX + info->dirX * info->moveSpeed)]))
 			info->posX += info->dirX * info->moveSpeed;
-		if (ft_strchr(" 0",info->world_map[(int)(info->posY + info->dirY * info->moveSpeed)][(int)(info->posX)]))
+		if (ft_strchr(" 0",info->map_arr[(int)(info->posY + info->dirY * info->moveSpeed)][(int)(info->posX)]))
 			info->posY += info->dirY * info->moveSpeed;
-		// if (!info->world_map[(int)(info->posX)][(int)(info->posY + info->dirY * info->moveSpeed)])
+		// if (!info->map_arr[(int)(info->posX)][(int)(info->posY + info->dirY * info->moveSpeed)])
 	}
 	//move backwards if no wall behind you
 	if (key == 1)
 	{
-		// if (!info->world_map[(int)(info->posX - info->dirX * info->moveSpeed)][(int)(info->posY)])
-		if (ft_strchr(" 0", info->world_map[(int)(info->posY)][(int)(info->posX - info->dirX * info->moveSpeed)]))
+		// if (!info->map_arr[(int)(info->posX - info->dirX * info->moveSpeed)][(int)(info->posY)])
+		if (ft_strchr(" 0", info->map_arr[(int)(info->posY)][(int)(info->posX - info->dirX * info->moveSpeed)]))
 			info->posX -= info->dirX * info->moveSpeed;
-		// if (!info->world_map[(int)(info->posX)][(int)(info->posY - info->dirY * info->moveSpeed)])
-		if (ft_strchr(" 0", info->world_map[(int)(info->posY - info->dirY * info->moveSpeed)][(int)(info->posX)]))
+		// if (!info->map_arr[(int)(info->posX)][(int)(info->posY - info->dirY * info->moveSpeed)])
+		if (ft_strchr(" 0", info->map_arr[(int)(info->posY - info->dirY * info->moveSpeed)][(int)(info->posX)]))
 			info->posY -= info->dirY * info->moveSpeed;
 	}
 	//rotate to the left
@@ -65,13 +65,6 @@ void	draw_lodev(t_info *info)
 	int	x;
 	int	y;
 
-	// y = 0;
-	// while (y <= y1)
-	// {
-	// 	printf("%s\n", info->win);
-	// 	my_mlx_pixel_put(info->win, x, y, 0x000000);
-	// 	y++;
-	// }
 	y = -1;
 	while (++y < win_height)
 	{
@@ -157,7 +150,7 @@ void	calc(t_info *info)
 				mapY += stepY;
 				side = '1';
 			}
-			if (info->world_map[mapY][mapX] == '1')
+			if (info->map_arr[mapY][mapX] == '1')
 				hit = 1;
 		}
 
@@ -176,7 +169,7 @@ void	calc(t_info *info)
 		drawEnd = lineHeight / 2 + win_height / 2;
 		if(drawEnd >= win_height)
 			drawEnd = win_height - 1;
-		texNum = info->world_map[mapY][mapX];
+		texNum = info->map_arr[mapY][mapX];
 		if (side == '0')
 			wallX = info->posY + perpWallDist * rayDirY;
 		else
@@ -266,71 +259,70 @@ void	load_texture(t_info *info)
 	load_image(info, info->texture[7], "./textures/colorstone.xpm", &img);
 }
 
-int	start_lodev_version(char **world_map, t_all *data)
+int	start_lodev_version(t_info *info, t_player player)
 {
-	t_info	info;
 	int		i;
 	int		j;
 	// (void)data;
 
 	float m = 0;
 	float n = 0;
-	info.mlx = mlx_init();
-	if (data->map_arr[data->player.y + 1][data->player.x] == '1' || \
-		data->map_arr[data->player.y - 1][data->player.x] == '1')
+	info->mlx = mlx_init();
+	if (info->map_arr[player.y + 1][player.x] == '1' || \
+		info->map_arr[player.y - 1][player.x] == '1')
 		m = 0.5;
-	if (data->map_arr[data->player.y][data->player.x - 1] == '1' || \
-		data->map_arr[data->player.y][data->player.x - 1] == '1')
+	if (info->map_arr[player.y][player.x - 1] == '1' || \
+		info->map_arr[player.y][player.x - 1] == '1')
 		n = 0.5;
-	info.posX = data->player.x + n;
-	info.posY = data->player.y + m;
+	info->posX = player.x + n;
+	info->posY = player.y + m;
 	// Направление
-	if (data->player.plr_direction == 'S')
+	if (player.plr_direction == 'S')
 	{
-		info.dirX = 0.0;
-		info.dirY = 1.0;
-		info.planeX = -0.66;
-		info.planeY = 0.0;
+		info->dirX = 0.0;
+		info->dirY = 1.0;
+		info->planeX = -0.66;
+		info->planeY = 0.0;
 	}
-	else if (data->player.plr_direction == 'E')
+	else if (player.plr_direction == 'E')
 	{
-		info.dirX = -1.0;
-		info.dirY = 0.0;
-		info.planeX = 0.0;
-		info.planeY = -0.66;
+		info->dirX = -1.0;
+		info->dirY = 0.0;
+		info->planeX = 0.0;
+		info->planeY = -0.66;
 	}
-	else if (data->player.plr_direction == 'N')
+	else if (player.plr_direction == 'N')
 	{
-		info.dirX = 0.0;
-		info.dirY = -1.0;
-		info.planeX = 0.66;
-		info.planeY = 0.0;
+		info->dirX = 0.0;
+		info->dirY = -1.0;
+		info->planeX = 0.66;
+		info->planeY = 0.0;
 	}
-	else if (data->player.plr_direction == 'W')
+	else if (player.plr_direction == 'W')
 	{
-		info.dirX = 1.0;
-		info.dirY = 0.0;
-		info.planeX = 0.0;
-		info.planeY = 0.66;
+		info->dirX = 1.0;
+		info->dirY = 0.0;
+		info->planeX = 0.0;
+		info->planeY = 0.66;
 	}
-	info.world_map = world_map;
+	// info->map_arr = map_arr;
 
 	i = -1;
 	while (++i < win_height)
 	{
 		j = -1;
 		while (++j < win_width)
-			info.buf[i][j] = 0;
+			info->buf[i][j] = 0;
 	}
 
-	if (!(info.texture = (int **)malloc(sizeof(int *) * 8)))
+	if (!(info->texture = (int **)malloc(sizeof(int *) * 8)))
 		return (-1);
 	// ft_calloc(sizeof(int *), 8);
 	i = -1;
 	while (++i < 8)
 	{
 		// ft_calloc(sizeof(int), texHeight * texWidth);
-		if (!(info.texture[i] = (int *)malloc(sizeof(int) * (texHeight * texWidth))))
+		if (!(info->texture[i] = (int *)malloc(sizeof(int) * (texHeight * texWidth))))
 			 return (-1);
 	}
 	// Заполнение исходных текстур 0-ми
@@ -339,17 +331,17 @@ int	start_lodev_version(char **world_map, t_all *data)
 	{
 		j = -1;
 		while (++j < texWidth * texHeight)
-			info.texture[i][j] = 0;
+			info->texture[i][j] = 0;
 	}
-	load_texture(&info);
-	info.moveSpeed = 0.08;
-	info.rotSpeed = 0.08;
-	info.win = mlx_new_window(info.mlx, win_width, win_height, "cub3D");
-	info.img.img = mlx_new_image(info.mlx, win_width, win_height);
-	info.img.data = (int *)mlx_get_data_addr(info.img.img, &info.img.bpp, &info.img.size_l, &info.img.endian);
-	mlx_loop_hook(info.mlx, &main_loop, &info);
-	mlx_hook(info.win, 2, 0, &key_press, &info);
+	load_texture(info);
+	info->moveSpeed = 0.08;
+	info->rotSpeed = 0.08;
+	info->win = mlx_new_window(info->mlx, win_width, win_height, "cub3D");
+	info->img.img = mlx_new_image(info->mlx, win_width, win_height);
+	info->img.data = (int *)mlx_get_data_addr(info->img.img, &info->img.bpp, &info->img.size_l, &info->img.endian);
+	mlx_loop_hook(info->mlx, &main_loop, info);
+	mlx_hook(info->win, 2, 0, &key_press, info);
 
-	mlx_loop(info.mlx);
+	mlx_loop(info->mlx);
 	return (0);
 }

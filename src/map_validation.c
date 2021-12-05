@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 22:20:17 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/05 12:49:59 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/05 19:26:11 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,21 @@ void	check_uncorrect_postion(t_all *data, char s)
 	int	j;
 
 	i = 1;
-	while (data->map_arr[i + 1])
+	while (data->info->map_arr[i + 1])
 	{
 		j = 1;
-		if (data->map_arr[i][0] == s)
+		if (data->info->map_arr[i][0] == s)
 			map_err(ERR_MAP);
-		while (data->map_arr[i][j + 1])
+		while (data->info->map_arr[i][j + 1])
 		{
-			if (data->map_arr[i][j] == s)
+			if (data->info->map_arr[i][j] == s)
 			{
-				if (valid_symbol(data->map_arr, i, j, ' '))
+				if (valid_symbol(data->info->map_arr, i, j, ' '))
 					map_err(ERR_MAP);
 			}
 			j++;
 		}
-		if (data->map_arr[i][j] == s)
+		if (data->info->map_arr[i][j] == s)
 			map_err(ERR_MAP);
 		i++;
 	}
@@ -66,20 +66,20 @@ void	check_player(t_all *data)
 
 	player = 0;
 	i = -1;
-	while (data->map_arr[++i])
+	while (data->info->map_arr[++i])
 	{
 		j = -1;
-		while (data->map_arr[i][++j])
+		while (data->info->map_arr[i][++j])
 		{
-			if (data->map_arr[i][j] == 'N' || data->map_arr[i][j] == 'E' || \
-				data->map_arr[i][j] == 'S' || data->map_arr[i][j] == 'W')
+			if (data->info->map_arr[i][j] == 'N' || data->info->map_arr[i][j] == 'E' || \
+				data->info->map_arr[i][j] == 'S' || data->info->map_arr[i][j] == 'W')
 			{
-				//preset_player_direction(data, data->map_arr[i][j]);
-				data->player.plr_direction = data->map_arr[i][j];
+				//preset_player_direction(data, data->info->map_arr[i][j]);
+				data->player.plr_direction = data->info->map_arr[i][j];
 				player++;
 				data->player.x = j;
 				data->player.y = i;
-				data->map_arr[i][j] = '0';
+				data->info->map_arr[i][j] = '0';
 			}
 		}
 	}
@@ -89,13 +89,13 @@ void	check_player(t_all *data)
 
 void	check_map_validation(t_all *data)
 {
-	check_sympols(data->map_arr);
+	check_sympols(data->info->map_arr);
 	check_player(data);
-	check_borders(data->map_arr, 0);
-	check_borders(data->map_arr, get_height_arr(data->map_arr) - 1);
+	check_borders(data->info->map_arr, 0);
+	check_borders(data->info->map_arr, get_height_arr(data->info->map_arr) - 1);
 	check_uncorrect_postion(data, '0');
 	check_uncorrect_postion(data, data->player.plr_direction);
-	if (valid_symbol(data->map_arr, data->player.y, data->player.x, ' '))
+	if (valid_symbol(data->info->map_arr, data->player.y, data->player.x, ' '))
 		map_err(ERR_MAP);
 	// check_plr_lock(data);
 }

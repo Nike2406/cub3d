@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 19:08:27 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/05 18:29:20 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/05 19:37:46 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,12 @@
 # define ERR_MAP		3
 # define ERR_PLR_LOCK	4
 
-typedef struct	s_point
-{
-	int	x;
-	int	y;
-}	t_point;
+#define texWidth		64
+#define texHeight		64
+#define mapWidth		24
+#define mapHeight		24
+#define win_width		640
+#define win_height		480
 
 typedef struct s_player
 {
@@ -47,47 +48,6 @@ typedef struct s_map
 	int		width;
 	int		height;
 }	t_map;
-
-typedef struct s_win
-{
-	void	*mlx;
-	void	*win;
-	void	*img;
-	void	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		line_l;
-	int		bpp;
-	int		en;
-
-	int		img_width;
-	int		img_height;
-
-	int		zoom;
-
-	double	shift_x;
-	double	shift_y;
-	int		render_flag;
-}	t_win;
-
-typedef struct s_all
-{
-	t_win		*win;
-	char		**map_arr;
-	t_player	player;
-	t_map		map;
-}	t_all;
-
-/*			Lodev version			*/
-// Start
-/*-------------------------------------*/
-#define texWidth 64
-#define texHeight 64
-#define mapWidth 24
-#define mapHeight 24
-#define win_width 640
-#define win_height 480
 
 typedef struct	s_img
 {
@@ -117,13 +77,15 @@ typedef struct	s_info
 	int		**texture;
 	double	moveSpeed;
 	double	rotSpeed;
-	//map
-	char	**world_map;
-}				t_info;
+	char	**map_arr;
+}	t_info;
 
-int	start_lodev_version(char **world_map, t_all *data);
-/*-------------------------------------*/
-// End
+typedef struct s_all
+{
+	t_info		*info;
+	t_player	player;
+	t_map		map;
+}	t_all;
 
 void	common_err(int err);
 void	map_err(int err);
@@ -143,5 +105,8 @@ void	check_player(t_all *data);
 void	check_map_spaces(t_all *data, char s);
 int		valid_symbol(char **arr, int i, int j, char s);
 void	check_borders(char **map, int i);
+
+void	data_preset(t_all *data);
+int		start_lodev_version(t_info *info, t_player player);
 
 #endif

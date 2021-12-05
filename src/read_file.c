@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:33:42 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/05 13:55:42 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/05 19:25:41 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,21 @@ void	read_file(char *file_name, t_all *data)
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
 		common_err(ERR_READING);
-	data->map_arr = ft_calloc(data->map.height + 1, sizeof(char *));
+	data->info->map_arr = ft_calloc(data->map.height + 1, sizeof(char *));
 	i = -1;
 	while (++i < data->map.height)
 	{
-		data->map_arr[i] = ft_calloc(data->map.width + 1, sizeof(char));
-		ft_memset(data->map_arr[i], ' ', data->map.width);
+		data->info->map_arr[i] = ft_calloc(data->map.width + 1, sizeof(char));
+		ft_memset(data->info->map_arr[i], ' ', data->map.width);
 	}
-	if (!data->map_arr)
+	if (!data->info->map_arr)
 		common_err(ERR_MALLOC);
 	i = -1;
 	while (++i < data->map.height)
 	{
 		get_next_line(fd, &line);
-		ft_memcpy(data->map_arr[i], line, ft_strlen(line));
-		// ft_strrev(data->map_arr[i]);
+		ft_memcpy(data->info->map_arr[i], line, ft_strlen(line));
+		// ft_strrev(data->info->map_arr[i]);
 		free(line);
 	}
 	close(fd);
