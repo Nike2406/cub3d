@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 19:53:36 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/05 21:45:29 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/05 22:07:41 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,9 @@ void	load_image(t_info *info, int *texture, char *path, t_img *img)
 void	load_texture(t_info *info)
 {
 	t_img	img;
+	// int		i;
+
+	// i = -1;
 
 	load_image(info, info->texture[0], "./textures/eagle.xpm", &img);
 	load_image(info, info->texture[1], "./textures/redbrick.xpm", &img);
