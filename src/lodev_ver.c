@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 19:53:36 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/05 14:48:07 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/05 15:08:03 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -276,13 +276,11 @@ int	start_lodev_version(char **world_map, t_all *data)
 	float m = 0;
 	float n = 0;
 	info.mlx = mlx_init();
-	// if (data->map_arr[data->player.y + 1][data->player.x] == '1')
-	// 	m = -0.5;
-	// if (data->map_arr[data->player.y][data->player.x + 1] == '1')
-	// 	n = -0.5;
-	if (data->map_arr[data->player.y - 1][data->player.x] == '1')
+	if (data->map_arr[data->player.y + 1][data->player.x] == '1' || \
+		data->map_arr[data->player.y - 1][data->player.x] == '1')
 		m = 0.5;
-	if (data->map_arr[data->player.y][data->player.x - 1] == '1')
+	if (data->map_arr[data->player.y][data->player.x - 1] == '1' || \
+		data->map_arr[data->player.y][data->player.x - 1] == '1')
 		n = 0.5;
 	info.posX = data->player.x + n;
 	info.posY = data->player.y + m;
