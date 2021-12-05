@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:44:49 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/05 19:30:15 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/05 20:45:06 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,3 +106,16 @@ float	MAX(float a, float b)
 		return (a);
 }
 
+void	double_int_arr_fill(int **arr, int first, int second)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < first)
+	{
+		j = -1;
+		while (++j < second)
+			arr[i][j] = 0;
+	}
+}

@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 19:08:27 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/05 19:37:46 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/05 21:43:40 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,15 +80,43 @@ typedef struct	s_info
 	char	**map_arr;
 }	t_info;
 
+typedef struct	s_raycasting
+{
+	double	cameraX;
+	double	rayDirX;
+	double	rayDirY;
+	int		mapX;
+	int		mapY;
+	double	sideDistX;
+	double	sideDistY;
+	double	deltaDistX;
+	double	deltaDistY;
+	double	perpWallDist;
+	int		stepX;
+	int		stepY;
+	int		hit;
+	int		side;
+	int		lineHeight;
+	int		drawStart;
+	int		drawEnd;
+	int		texNum;
+	double	wallX;
+	int		texX;
+	double	step;
+	double	texPos;
+}	t_raycasting;
+
 typedef struct s_all
 {
-	t_info		*info;
-	t_player	player;
-	t_map		map;
+	t_info			*info;
+	t_player		player;
+	t_map			map;
+	t_raycasting	*raycasting;
 }	t_all;
 
 void	common_err(int err);
 void	map_err(int err);
+int		keys_err(int code);
 void	clean(t_all *data);
 
 int		get_height_file(char *file_name);
@@ -97,6 +125,7 @@ int		get_height_arr(char **arr);
 int		get_width_arr(char *arr);
 float	MOD(float a);
 float	MAX(float a, float b);
+void	double_int_arr_fill(int **arr, int first, int second);
 
 void	read_file(char *file_name, t_all *data);
 void	check_map_validation(t_all *data);
@@ -108,5 +137,16 @@ void	check_borders(char **map, int i);
 
 void	data_preset(t_all *data);
 int		start_lodev_version(t_info *info, t_player player);
+int		key_press_X(int key, t_info *info);
+int		key_press_Y(int key, t_info *info);
+void	position_preset(t_info *info, t_player player);
+void	directon_preset_1(t_info *info, t_player player);
+void	directon_preset_2(t_info *info, t_player player);
+
+void	raycasting_preset(t_raycasting *ray_c, t_info *info, int x);
+void	get_side_position(t_raycasting *ray_c, t_info *info);
+void	get_ray_hit(t_raycasting *ray_c, t_info *info);
+void	get_texture_params(t_raycasting *ray_c, t_info *info);
+void	fill_verticals(t_raycasting *ray_c, t_info *info, int x);
 
 #endif

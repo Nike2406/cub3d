@@ -5,7 +5,8 @@ CC			= gcc
 
 SRCS 		= src/cub3d.c src/err.c src/read_file.c src/utils.c \
 			src/map_validation.c src/map_validation_utils.c \
-			src/lodev_ver.c src/render_utils.c\
+			src/lodev_ver.c src/render_utils.c src/keys.c \
+			src/raycasting.c \
 			get_next_line/get_next_line.c
 OBJS = $(SRCS:%.c=%.o)
 LIBFT_OBJS	= $(LIBFT:%.c=%.o)
