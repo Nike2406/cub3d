@@ -6,38 +6,11 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 19:53:36 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/05 11:42:45 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/05 13:00:19 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-// int	worldMap[24][24] = {
-// 							{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-// 							{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 							{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 							{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 							{1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-// 							{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 							{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
-// 							{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 							{1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-// 							{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 							{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 							{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 							{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 							{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 							{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 							{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 							{1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 							{1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 							{1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 							{1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 							{1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 							{1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 							{1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 							{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-// 						};
 
 int	key_press(int key, t_info *info)
 {
@@ -84,6 +57,9 @@ int	key_press(int key, t_info *info)
 	if (key == 53)
 		exit(0);
 	printf("x - %f, y - %f\n", info->posX, info->posY);
+	// printf("key = %d\n", key);
+	printf("dirX = %f, dirY = %f\n", info->dirX, info->dirY);
+	printf("dirX = %f, diry = %f\n", info->dirX, info->dirY);
 	return (0);
 }
 
@@ -308,10 +284,35 @@ int	start_lodev_version(char **world_map, t_all *data)
 		n = 0.5;
 	info.posX = data->player.x + n;
 	info.posY = data->player.y + m;
-	info.dirX = -1.0;
-	info.dirY = 0.0;
-	info.planeX = 0.0;
-	info.planeY = 0.66;
+	// Направление
+	if (data->player.plr_direction == 'S')
+	{
+		info.dirX = 0.0;
+		info.dirY = 1.0;
+		info.planeX = 0.66;
+		info.planeY = 0.0;
+	}
+	else if (data->player.plr_direction == 'E')
+	{
+		info.dirX = -1.0;
+		info.dirY = 0.0;
+		info.planeX = 0.0;
+		info.planeY = 0.66;
+	}
+	else if (data->player.plr_direction == 'N')
+	{
+		info.dirX = 0.0;
+		info.dirY = -1.0;
+		info.planeX = -0.66;
+		info.planeY = 0.0;
+	}
+	else if (data->player.plr_direction == 'W')
+	{
+		info.dirX = 1.0;
+		info.dirY = 0.0;
+		info.planeX = 0.0;
+		info.planeY = -0.66;
+	}
 	info.world_map = world_map;
 
 	i = -1;
@@ -341,8 +342,8 @@ int	start_lodev_version(char **world_map, t_all *data)
 			info.texture[i][j] = 0;
 	}
 	load_texture(&info);
-	info.moveSpeed = 0.05;
-	info.rotSpeed = 0.05;
+	info.moveSpeed = 0.08;
+	info.rotSpeed = 0.08;
 	info.win = mlx_new_window(info.mlx, win_width, win_height, "cub3D");
 	info.img.img = mlx_new_image(info.mlx, win_width, win_height);
 	info.img.data = (int *)mlx_get_data_addr(info.img.img, &info.img.bpp, &info.img.size_l, &info.img.endian);

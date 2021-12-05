@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 22:20:17 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/04 23:57:20 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/05 12:49:59 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ void	check_player(t_all *data)
 			if (data->map_arr[i][j] == 'N' || data->map_arr[i][j] == 'E' || \
 				data->map_arr[i][j] == 'S' || data->map_arr[i][j] == 'W')
 			{
-				preset_player_direction(data, data->map_arr[i][j]);
+				//preset_player_direction(data, data->map_arr[i][j]);
+				data->player.plr_direction = data->map_arr[i][j];
 				player++;
 				data->player.x = j;
 				data->player.y = i;

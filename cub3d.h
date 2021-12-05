@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 19:08:27 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/04 23:05:21 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/05 12:50:14 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_player
 {
 	int		x;
 	int		y;
-	double	plr_direction;
+	char	plr_direction;
 }	t_player;
 
 typedef struct s_map

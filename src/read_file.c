@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:33:42 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/05 01:00:40 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/05 12:07:58 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	read_file(char *file_name, t_all *data)
 	{
 		get_next_line(fd, &line);
 		ft_memcpy(data->map_arr[i], line, ft_strlen(line));
-		ft_strrev(data->map_arr[i]);
+		// ft_strrev(data->map_arr[i]);
 		free(line);
 	}
 	close(fd);
