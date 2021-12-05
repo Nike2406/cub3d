@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 19:08:27 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/05 12:50:14 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/05 18:29:20 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,17 +143,5 @@ void	check_player(t_all *data);
 void	check_map_spaces(t_all *data, char s);
 int		valid_symbol(char **arr, int i, int j, char s);
 void	check_borders(char **map, int i);
-void	check_plr_lock(t_all *data);
-void	preset_player_direction(t_all *data, char s);
-
-void	data_preset(t_all *data);
-void	first_render(t_win *win, t_all *data);
-void	render(t_win *win, t_all *data);
-void	my_mlx_pixel_put(t_info *win, int x, int y, int color);
-void	get_hook(t_all *data);
-int		deal_key(int key, t_all *data);
-int		keys_err(int code);
-
-// void	draw(t_all *data);
 
 #endif
