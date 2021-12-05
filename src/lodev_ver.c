@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 19:53:36 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/05 13:00:19 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/05 14:48:07 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int	key_press(int key, t_info *info)
 		if (ft_strchr(" 0", info->world_map[(int)(info->posY - info->dirY * info->moveSpeed)][(int)(info->posX)]))
 			info->posY -= info->dirY * info->moveSpeed;
 	}
-	//rotate to the right
-	if (key == 2)
+	//rotate to the left
+	if (key == 0)
 	{
 		//both camera direction and camera plane must be rotated
 		double oldDirX = info->dirX;
@@ -43,8 +43,8 @@ int	key_press(int key, t_info *info)
 		info->planeX = info->planeX * cos(-info->rotSpeed) - info->planeY * sin(-info->rotSpeed);
 		info->planeY = oldPlaneX * sin(-info->rotSpeed) + info->planeY * cos(-info->rotSpeed);
 	}
-	//rotate to the left
-	if (key == 0)
+	//rotate to the right
+	if (key == 2)
 	{
 		//both camera direction and camera plane must be rotated
 		double oldDirX = info->dirX;
@@ -57,9 +57,6 @@ int	key_press(int key, t_info *info)
 	if (key == 53)
 		exit(0);
 	printf("x - %f, y - %f\n", info->posX, info->posY);
-	// printf("key = %d\n", key);
-	printf("dirX = %f, dirY = %f\n", info->dirX, info->dirY);
-	printf("dirX = %f, diry = %f\n", info->dirX, info->dirY);
 	return (0);
 }
 
@@ -163,10 +160,15 @@ void	calc(t_info *info)
 			if (info->world_map[mapY][mapX] == '1')
 				hit = 1;
 		}
+
 		if (side == '0')
-			perpWallDist = (mapX - info->posX + (1 - stepX) / 2) / rayDirX;
+			 perpWallDist = (sideDistX - deltaDistX);
 		else
-			perpWallDist = (mapY - info->posY + (1 - stepY) / 2) / rayDirY;
+			perpWallDist = (sideDistY - deltaDistY);
+		// if (side == '0')
+		// 	perpWallDist = (mapX - info->posX + (1 - stepX) / 2) / rayDirX;
+		// else
+		// 	perpWallDist = (mapY - info->posY + (1 - stepY) / 2) / rayDirY;
 		lineHeight = (int)(win_height / perpWallDist);
 		drawStart = -lineHeight / 2 + win_height / 2;
 		if(drawStart < 0)
@@ -198,7 +200,7 @@ void	calc(t_info *info)
 			y++;
 		}
 		y = drawStart;
-		while (y < drawEnd)
+		while (y <= drawEnd)
 		{
 			texY = (int)texPos & (texHeight - 1);
 			texPos += step;
@@ -274,10 +276,10 @@ int	start_lodev_version(char **world_map, t_all *data)
 	float m = 0;
 	float n = 0;
 	info.mlx = mlx_init();
-	if (data->map_arr[data->player.y + 1][data->player.x] == '1')
-		m = -0.5;
-	if (data->map_arr[data->player.y][data->player.x + 1] == '1')
-		n = -0.5;
+	// if (data->map_arr[data->player.y + 1][data->player.x] == '1')
+	// 	m = -0.5;
+	// if (data->map_arr[data->player.y][data->player.x + 1] == '1')
+	// 	n = -0.5;
 	if (data->map_arr[data->player.y - 1][data->player.x] == '1')
 		m = 0.5;
 	if (data->map_arr[data->player.y][data->player.x - 1] == '1')
@@ -289,7 +291,7 @@ int	start_lodev_version(char **world_map, t_all *data)
 	{
 		info.dirX = 0.0;
 		info.dirY = 1.0;
-		info.planeX = 0.66;
+		info.planeX = -0.66;
 		info.planeY = 0.0;
 	}
 	else if (data->player.plr_direction == 'E')
@@ -297,13 +299,13 @@ int	start_lodev_version(char **world_map, t_all *data)
 		info.dirX = -1.0;
 		info.dirY = 0.0;
 		info.planeX = 0.0;
-		info.planeY = 0.66;
+		info.planeY = -0.66;
 	}
 	else if (data->player.plr_direction == 'N')
 	{
 		info.dirX = 0.0;
 		info.dirY = -1.0;
-		info.planeX = -0.66;
+		info.planeX = 0.66;
 		info.planeY = 0.0;
 	}
 	else if (data->player.plr_direction == 'W')
@@ -311,7 +313,7 @@ int	start_lodev_version(char **world_map, t_all *data)
 		info.dirX = 1.0;
 		info.dirY = 0.0;
 		info.planeX = 0.0;
-		info.planeY = -0.66;
+		info.planeY = 0.66;
 	}
 	info.world_map = world_map;
 
