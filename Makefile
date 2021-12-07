@@ -18,10 +18,8 @@ FRAMEWORK	= -framework OpenGL -framework AppKit
 
 RED_COLOR = \033[0;31m
 
-.PHONY: all clean fclean re bonus libft norm
-
-.o: .c $(INCLUDE)
-	@$(CC) $(CFLAGS) $< -o $@
+%.o: %.c $(INCLUDE)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 all: libft mlx $(NAME)
 
@@ -59,3 +57,5 @@ fclean: clean
 	rm -f libft/libft.a
 
 re: fclean all
+
+.PHONY: all clean fclean re bonus libft norm

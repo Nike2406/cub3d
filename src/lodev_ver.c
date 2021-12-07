@@ -6,7 +6,7 @@
 /*   By: signacia <signacia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 19:53:36 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/05 11:49:13 by signacia         ###   ########.fr       */
+/*   Updated: 2021/12/07 19:04:33 by signacia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -295,6 +295,7 @@ int	start_lodev_version(char **world_map, t_all *data)
 	int		j;
 	// (void)data;
 
+	
 	float m = 0;
 	float n = 0;
 	info.mlx = mlx_init();
@@ -321,7 +322,6 @@ int	start_lodev_version(char **world_map, t_all *data)
 		while (++j < win_width)
 			info.buf[i][j] = 0;
 	}
-
 	if (!(info.texture = (int **)malloc(sizeof(int *) * 8)))
 		return (-1);
 	// ft_calloc(sizeof(int *), 8);
@@ -341,8 +341,8 @@ int	start_lodev_version(char **world_map, t_all *data)
 			info.texture[i][j] = 0;
 	}
 	load_texture(&info);
-	info.moveSpeed = 0.05;
-	info.rotSpeed = 0.05;
+	info.moveSpeed = 0.1;
+	info.rotSpeed = 0.1;
 	info.win = mlx_new_window(info.mlx, win_width, win_height, "cub3D");
 	info.img.img = mlx_new_image(info.mlx, win_width, win_height);
 	info.img.data = (int *)mlx_get_data_addr(info.img.img, &info.img.bpp, &info.img.size_l, &info.img.endian);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: signacia <signacia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 19:08:27 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/04 23:05:21 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/07 19:33:49 by signacia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,13 @@
 # define ERR_MALLOC		1
 # define ERR_READING	2
 # define ERR_ARGUMENTS	3
+# define INVALID_COLOR	4
 
 # define ERR_PLAYER		1
 # define ERR_SYMBOL		2
 # define ERR_MAP		3
 # define ERR_PLR_LOCK	4
+# define ERR_NO_MAP		5
 
 typedef struct	s_point
 {
@@ -75,6 +77,9 @@ typedef struct s_all
 {
 	t_win		*win;
 	char		**map_arr;
+	char		**texture_addr;
+	int			floor_color;
+	int			ceil_color;
 	t_player	player;
 	t_map		map;
 }	t_all;
@@ -136,7 +141,7 @@ int		get_width_arr(char *arr);
 float	MOD(float a);
 float	MAX(float a, float b);
 
-void	read_file(char *file_name, t_all *data);
+void	parsing_qube(char *file_name, t_all *data);
 void	check_map_validation(t_all *data);
 void	check_sympols(char **map);
 void	check_player(t_all *data);

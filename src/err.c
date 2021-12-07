@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   err.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: signacia <signacia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:25:51 by prochell          #+#    #+#             */
-/*   Updated: 2021/11/21 12:16:33 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/07 17:36:12 by signacia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,21 @@
 
 void	common_err(int err)
 {
+	printf("Error\n");
 	if (err == ERR_MALLOC)
 		printf("Malloc failed!\n");
 	else if (err == ERR_ARGUMENTS)
 		printf("Arguments error!\n");
 	else if (err == ERR_READING)
 		printf("Reading failed!\n");
+	else if (err == INVALID_COLOR)
+		printf("Invalid color!\n");
 	exit(1);
 }
 
 void	map_err(int err)
 {
+	printf("Error\n");
 	if (err == ERR_PLAYER)
 		printf("It must be just one player!\n");
 	else if (err == ERR_SYMBOL)
@@ -33,6 +37,8 @@ void	map_err(int err)
 		printf("The map is not valid!\n");
 	else if (err == ERR_PLR_LOCK)
 		printf("Player locked!\n");
+	else if (err == ERR_NO_MAP)
+		printf("No map!\n");
 	exit(1);
 }
 
