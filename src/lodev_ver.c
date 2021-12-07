@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 19:53:36 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/05 22:07:41 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/07 21:12:24 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	load_texture(t_info *info)
 	// i = -1;
 
 	load_image(info, info->texture[0], "./textures/eagle.xpm", &img);
-	load_image(info, info->texture[1], "./textures/redbrick.xpm", &img);
+	load_image(info, info->texture[1], "./textures/cry_64.xpm", &img);
 	load_image(info, info->texture[2], "./textures/purplestone.xpm", &img);
 	load_image(info, info->texture[3], "./textures/greystone.xpm", &img);
 	load_image(info, info->texture[4], "./textures/bluestone.xpm", &img);
