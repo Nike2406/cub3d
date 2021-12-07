@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 19:53:36 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/07 21:12:24 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/07 23:02:48 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,14 +84,14 @@ void	load_texture(t_info *info)
 
 	// i = -1;
 
-	load_image(info, info->texture[0], "./textures/eagle.xpm", &img);
+	load_image(info, info->texture[0], "./textures/watM_64.xpm", &img);
 	load_image(info, info->texture[1], "./textures/cry_64.xpm", &img);
-	load_image(info, info->texture[2], "./textures/purplestone.xpm", &img);
-	load_image(info, info->texture[3], "./textures/greystone.xpm", &img);
+	load_image(info, info->texture[2], "./textures/watG_64.xpm", &img);
+	load_image(info, info->texture[3], "./textures/agreed_64.xpm", &img);
 	load_image(info, info->texture[4], "./textures/bluestone.xpm", &img);
-	load_image(info, info->texture[5], "./textures/mossy.xpm", &img);
-	load_image(info, info->texture[6], "./textures/wood.xpm", &img);
-	load_image(info, info->texture[7], "./textures/colorstone.xpm", &img);
+	// load_image(info, info->texture[5], "./textures/mossy.xpm", &img);
+	load_image(info, info->texture[5], "./textures/wood.xpm", &img);
+	// load_image(info, info->texture[7], "./textures/colorstone.xpm", &img);
 }
 
 int	start_lodev_version(t_info *info, t_player player)

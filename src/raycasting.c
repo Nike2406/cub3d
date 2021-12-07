@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/05 20:58:28 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/07 20:50:22 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/07 23:02:25 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,18 @@ void	get_ray_hit(t_raycasting *ray_c, t_info *info)
 		ray_c->perpWallDist = (ray_c->sideDistY - ray_c->deltaDistY);
 }
 
+void	get_texture_side(t_raycasting *ray_c)
+{
+	if (ray_c->side == '1' && ray_c->stepY < 0)
+		ray_c->texNum = 0;
+	else if (ray_c->side == '1' && ray_c->stepY > 0)
+		ray_c->texNum = 1;
+	else if (ray_c->side == '0' && ray_c->stepX > 0)
+		ray_c->texNum = 2;
+	else if (ray_c->side == '0' && ray_c->stepX < 0)
+		ray_c->texNum = 3;
+}
+
 void	get_texture_params(t_raycasting *ray_c, t_info *info)
 {
 	ray_c->lineHeight = (int)(win_height / ray_c->perpWallDist);
@@ -86,7 +98,11 @@ void	get_texture_params(t_raycasting *ray_c, t_info *info)
 	ray_c->drawEnd = ray_c->lineHeight / 2 + win_height / 2;
 	if(ray_c->drawEnd >= win_height)
 		ray_c->drawEnd = win_height - 1;
-	ray_c->texNum = info->map_arr[ray_c->mapY][ray_c->mapX];
+
+	// Выбор текстуры
+	// ray_c->texNum = info->map_arr[ray_c->mapY][ray_c->mapX];
+	get_texture_side(ray_c);
+
 	if (ray_c->side == '0')
 		ray_c->wallX = info->posY + ray_c->perpWallDist * ray_c->rayDirY;
 	else
@@ -117,7 +133,7 @@ void	fill_verticals(t_raycasting *ray_c, t_info *info, int x)
 	{
 		texY = (int)ray_c->texPos & (texHeight - 1);
 		ray_c->texPos += ray_c->step;
-		color = info->texture[ray_c->texNum % 8][texHeight * \
+		color = info->texture[ray_c->texNum % 4][texHeight * \
 			texY + ray_c->texX];
 		if (ray_c->side == '1')
 			color = (color >> 1) & 8355711;

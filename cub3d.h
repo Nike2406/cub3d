@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 19:08:27 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/05 21:43:40 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/07 22:14:50 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,7 @@ void	raycasting_preset(t_raycasting *ray_c, t_info *info, int x);
 void	get_side_position(t_raycasting *ray_c, t_info *info);
 void	get_ray_hit(t_raycasting *ray_c, t_info *info);
 void	get_texture_params(t_raycasting *ray_c, t_info *info);
+void	get_texture_side(t_raycasting *ray_c);
 void	fill_verticals(t_raycasting *ray_c, t_info *info, int x);
 
 #endif
