@@ -6,7 +6,7 @@
 /*   By: signacia <signacia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 19:08:27 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/07 19:33:49 by signacia         ###   ########.fr       */
+/*   Updated: 2021/12/08 11:42:59 by signacia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,18 @@
 # define ERR_PLR_LOCK	4
 # define ERR_NO_MAP		5
 
-typedef struct	s_point
-{
-	int	x;
-	int	y;
-}	t_point;
+#define texWidth		64
+#define texHeight		64
+#define mapWidth		24
+#define mapHeight		24
+#define win_width		640
+#define win_height		480
 
 typedef struct s_player
 {
 	int		x;
 	int		y;
-	double	plr_direction;
+	char	plr_direction;
 }	t_player;
 
 typedef struct s_map
@@ -49,50 +50,6 @@ typedef struct s_map
 	int		width;
 	int		height;
 }	t_map;
-
-typedef struct s_win
-{
-	void	*mlx;
-	void	*win;
-	void	*img;
-	void	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		line_l;
-	int		bpp;
-	int		en;
-
-	int		img_width;
-	int		img_height;
-
-	int		zoom;
-
-	double	shift_x;
-	double	shift_y;
-	int		render_flag;
-}	t_win;
-
-typedef struct s_all
-{
-	t_win		*win;
-	char		**map_arr;
-	char		**texture_addr;
-	int			floor_color;
-	int			ceil_color;
-	t_player	player;
-	t_map		map;
-}	t_all;
-
-/*			Lodev version			*/
-// Start
-/*-------------------------------------*/
-#define texWidth 64
-#define texHeight 64
-#define mapWidth 24
-#define mapHeight 24
-#define win_width 640
-#define win_height 480
 
 typedef struct	s_img
 {
@@ -122,16 +79,46 @@ typedef struct	s_info
 	int		**texture;
 	double	moveSpeed;
 	double	rotSpeed;
-	//map
-	char	**world_map;
-}				t_info;
+	char	**map_arr;
+}	t_info;
 
-int	start_lodev_version(char **world_map, t_all *data);
-/*-------------------------------------*/
-// End
+typedef struct	s_raycasting
+{
+	double	cameraX;
+	double	rayDirX;
+	double	rayDirY;
+	int		mapX;
+	int		mapY;
+	double	sideDistX;
+	double	sideDistY;
+	double	deltaDistX;
+	double	deltaDistY;
+	double	perpWallDist;
+	int		stepX;
+	int		stepY;
+	int		hit;
+	int		side;
+	int		lineHeight;
+	int		drawStart;
+	int		drawEnd;
+	int		texNum;
+	double	wallX;
+	int		texX;
+	double	step;
+	double	texPos;
+}	t_raycasting;
+
+typedef struct s_all
+{
+	t_info			*info;
+	t_player		player;
+	t_map			map;
+	t_raycasting	*raycasting;
+}	t_all;
 
 void	common_err(int err);
 void	map_err(int err);
+int		keys_err(int code);
 void	clean(t_all *data);
 
 int		get_height_file(char *file_name);
@@ -140,6 +127,7 @@ int		get_height_arr(char **arr);
 int		get_width_arr(char *arr);
 float	MOD(float a);
 float	MAX(float a, float b);
+void	double_int_arr_fill(int **arr, int first, int second);
 
 void	parsing_qube(char *file_name, t_all *data);
 void	check_map_validation(t_all *data);
@@ -148,17 +136,20 @@ void	check_player(t_all *data);
 void	check_map_spaces(t_all *data, char s);
 int		valid_symbol(char **arr, int i, int j, char s);
 void	check_borders(char **map, int i);
-void	check_plr_lock(t_all *data);
-void	preset_player_direction(t_all *data, char s);
 
 void	data_preset(t_all *data);
-void	first_render(t_win *win, t_all *data);
-void	render(t_win *win, t_all *data);
-void	my_mlx_pixel_put(t_info *win, int x, int y, int color);
-void	get_hook(t_all *data);
-int		deal_key(int key, t_all *data);
-int		keys_err(int code);
+int		start_lodev_version(t_info *info, t_player player);
+int		key_press_X(int key, t_info *info);
+int		key_press_Y(int key, t_info *info);
+void	position_preset(t_info *info, t_player player);
+void	directon_preset_1(t_info *info, t_player player);
+void	directon_preset_2(t_info *info, t_player player);
 
-// void	draw(t_all *data);
+void	raycasting_preset(t_raycasting *ray_c, t_info *info, int x);
+void	get_side_position(t_raycasting *ray_c, t_info *info);
+void	get_ray_hit(t_raycasting *ray_c, t_info *info);
+void	get_texture_params(t_raycasting *ray_c, t_info *info);
+void	get_texture_side(t_raycasting *ray_c);
+void	fill_verticals(t_raycasting *ray_c, t_info *info, int x);
 
 #endif
