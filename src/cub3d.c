@@ -6,7 +6,7 @@
 /*   By: signacia <signacia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:22:16 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/07 19:04:52 by signacia         ###   ########.fr       */
+/*   Updated: 2021/12/08 11:25:04 by signacia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int	main(int argc, char **argv)
 	data->win = (t_win *)malloc(sizeof(t_win));
 	if (!data->win)
 		common_err(ERR_MALLOC);
-	write(1, "I'm HERE!\n", 10);
 	start_lodev_version(data->map_arr, data);
 	// int i = -1;
 	// while (data->map_arr[++i])
