@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: signacia <signacia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/05 20:58:28 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/07 23:02:25 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/08 15:15:39 by signacia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,8 @@ void	fill_verticals(t_raycasting *ray_c, t_info *info, int x)
 
 	y = -1;
 	while (++y < ray_c->drawStart)
-		info->buf[y][x] = 0xFF0000;
+		info->buf[y][x] = info->ceil_color; // тут цвет потолка
+		// info->buf[y][x] = 0xFF0000;
 	y = ray_c->drawStart - 1;
 	while (++y <= ray_c->drawEnd)
 	{
@@ -140,5 +141,6 @@ void	fill_verticals(t_raycasting *ray_c, t_info *info, int x)
 		info->buf[y][x] = color;
 	}
 	while (++y < win_height)
-		info->buf[y][x] = 0x00FF00;
+		info->buf[y][x] = info->floor_color; // тут цвет пола
+		// info->buf[y][x] = 0x00FF00;
 }

@@ -6,7 +6,7 @@
 /*   By: signacia <signacia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:25:51 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/07 17:36:12 by signacia         ###   ########.fr       */
+/*   Updated: 2021/12/08 15:38:56 by signacia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@ void	common_err(int err)
 		printf("Arguments error!\n");
 	else if (err == ERR_READING)
 		printf("Reading failed!\n");
-	else if (err == INVALID_COLOR)
+	else if (err == INVAL_COLOR)
 		printf("Invalid color!\n");
+	else if (err == INVAL_TEXTURE)
+		printf("Invalid texture address!\n");
 	exit(1);
 }
 

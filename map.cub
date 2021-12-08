@@ -1,10 +1,10 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ./textures/watM_64.xpm
+SO ./textures/cry_64.xpm
+WE ./textures/watG_64.xpm
+EA ./textures/agreed_64.xpm
 
-F 220,100,0
-C 225,30,0
+C 110,80,40
+F 100,130,255
 
         1111111111111111111111111
         1000000000110000000000001

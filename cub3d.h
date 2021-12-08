@@ -6,7 +6,7 @@
 /*   By: signacia <signacia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 19:08:27 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/08 11:42:59 by signacia         ###   ########.fr       */
+/*   Updated: 2021/12/08 17:03:02 by signacia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 # define ERR_MALLOC		1
 # define ERR_READING	2
 # define ERR_ARGUMENTS	3
-# define INVALID_COLOR	4
+# define INVAL_COLOR	4
+# define INVAL_TEXTURE	5
 
 # define ERR_PLAYER		1
 # define ERR_SYMBOL		2
@@ -44,12 +45,6 @@ typedef struct s_player
 	int		y;
 	char	plr_direction;
 }	t_player;
-
-typedef struct s_map
-{
-	int		width;
-	int		height;
-}	t_map;
 
 typedef struct	s_img
 {
@@ -77,6 +72,9 @@ typedef struct	s_info
 	t_img	img;
 	int		buf[win_height][win_width];
 	int		**texture;
+	char	**texture_addr;
+	int		floor_color;
+	int		ceil_color;
 	double	moveSpeed;
 	double	rotSpeed;
 	char	**map_arr;
@@ -112,7 +110,6 @@ typedef struct s_all
 {
 	t_info			*info;
 	t_player		player;
-	t_map			map;
 	t_raycasting	*raycasting;
 }	t_all;
 

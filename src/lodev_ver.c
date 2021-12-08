@@ -6,11 +6,7 @@
 /*   By: signacia <signacia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 19:53:36 by prochell          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/12/07 19:04:33 by signacia         ###   ########.fr       */
-=======
-/*   Updated: 2021/12/07 23:02:48 by prochell         ###   ########.fr       */
->>>>>>> main
+/*   Updated: 2021/12/08 16:39:34 by signacia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +59,8 @@ void	load_image(t_info *info, int *texture, char *path, t_img *img)
 	int	y;
 
 	img->img = mlx_xpm_file_to_image(info->mlx, path, &img->img_width, &img->img_height);
-
 	if (!img->img)
-		exit(1);
+		common_err(INVAL_TEXTURE);
 	img->endian = 0;
 	img->bpp = 4;
 	img->size_l = img->img_width;
@@ -88,20 +83,20 @@ void	load_texture(t_info *info)
 
 	// i = -1;
 
-	load_image(info, info->texture[0], "./textures/watM_64.xpm", &img);
-	load_image(info, info->texture[1], "./textures/cry_64.xpm", &img);
-	load_image(info, info->texture[2], "./textures/watG_64.xpm", &img);
-	load_image(info, info->texture[3], "./textures/agreed_64.xpm", &img);
-	load_image(info, info->texture[4], "./textures/bluestone.xpm", &img);
+	load_image(info, info->texture[0], info->texture_addr[0], &img);
+	load_image(info, info->texture[1], info->texture_addr[1], &img);
+	load_image(info, info->texture[2], info->texture_addr[2], &img);
+	load_image(info, info->texture[3], info->texture_addr[3], &img);
+	// load_image(info, info->texture[4], "./textures/bluestone.xpm", &img);
 	// load_image(info, info->texture[5], "./textures/mossy.xpm", &img);
-	load_image(info, info->texture[5], "./textures/wood.xpm", &img);
+	// load_image(info, info->texture[5], "./textures/wood.xpm", &img);
 	// load_image(info, info->texture[7], "./textures/colorstone.xpm", &img);
 }
 
 int	start_lodev_version(t_info *info, t_player player)
 {
 	int		i;
-	int		j;
+	// int		j;
 
 	info->mlx = mlx_init();
 	position_preset(info, player);
@@ -110,13 +105,13 @@ int	start_lodev_version(t_info *info, t_player player)
 	// double_int_arr_fill(info->buf, win_height, win_width);
 
 	// Можно вырезать
-	i = -1;
-	while (++i < win_height)
-	{
-		j = -1;
-		while (++j < win_width)
-			info->buf[i][j] = 0;
-	}
+	// i = -1;
+	// while (++i < win_height)
+	// {
+	// 	j = -1;
+	// 	while (++j < win_width)
+	// 		info->buf[i][j] = 0;
+	// }
 
 	if (!(info->texture = (int **)malloc(sizeof(int *) * 8)))
 		common_err(ERR_MALLOC);
@@ -146,7 +141,7 @@ int	start_lodev_version(t_info *info, t_player player)
 	info->img.data = (int *)mlx_get_data_addr(info->img.img, &info->img.bpp, &info->img.size_l, &info->img.endian);
 	mlx_loop_hook(info->mlx, &main_loop, info);
 	mlx_hook(info->win, 17, 0, keys_err, info);
-	mlx_hook(info->win, 2, 0, &key_press_Y, info);
+	mlx_hook(info->win, 2, 0, key_press_Y, info);
 	mlx_loop(info->mlx);
 	return (0);
 }
