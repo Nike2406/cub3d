@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 19:08:27 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/11 21:26:31 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/11 21:41:21 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@
 # define TEXHEIGHT		64
 # define WIN_WIDTH		640
 # define WIN_HEIGHT		480
-# define ZOOM			(WIN_HEIGHT / 70)
 
 typedef struct s_player
 {
@@ -77,6 +76,7 @@ typedef struct s_info
 	double	movespeed;
 	double	rotspeed;
 	char	**map_arr;
+	int		zoom;
 }	t_info;
 
 typedef struct s_raycasting
