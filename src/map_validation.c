@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: signacia <signacia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 22:20:17 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/07 20:54:33 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/11 15:50:46 by signacia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	check_player(t_all *data)
 	int	i;
 	int	j;
 	int	player;
+	int	x;
 
 	player = 0;
 	i = -1;
@@ -71,10 +72,9 @@ void	check_player(t_all *data)
 		j = -1;
 		while (data->info->map_arr[i][++j])
 		{
-			if (data->info->map_arr[i][j] == 'N' || data->info->map_arr[i][j] == 'E' || \
-				data->info->map_arr[i][j] == 'S' || data->info->map_arr[i][j] == 'W')
+			x = data->info->map_arr[i][j];
+			if (x == 'N' || x == 'E' || x == 'S' || x == 'W')
 			{
-				//preset_player_direction(data, data->info->map_arr[i][j]);
 				data->player.plr_direction = data->info->map_arr[i][j];
 				player++;
 				data->player.x = j;
@@ -97,5 +97,4 @@ void	check_map_validation(t_all *data)
 	check_uncorrect_postion(data, data->player.plr_direction);
 	if (valid_symbol(data->info->map_arr, data->player.y, data->player.x, ' '))
 		map_err(ERR_MAP);
-	// check_plr_lock(data);
 }

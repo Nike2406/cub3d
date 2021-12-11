@@ -6,7 +6,7 @@
 /*   By: signacia <signacia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:25:51 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/08 15:38:56 by signacia         ###   ########.fr       */
+/*   Updated: 2021/12/11 15:29:20 by signacia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	map_err(int err)
 
 int	keys_err(int code)
 {
-	if (code ==1)
+	if (code == 1)
 		ft_putendl("Red button Alert!");
 	exit(code);
 	return (1);

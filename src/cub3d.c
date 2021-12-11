@@ -6,7 +6,7 @@
 /*   By: signacia <signacia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:22:16 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/08 11:40:28 by signacia         ###   ########.fr       */
+/*   Updated: 2021/12/11 17:43:12 by signacia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	main(int argc, char **argv)
 {
 	t_all	*data;
 
-
 	if (argc != 2)
 		common_err(ERR_ARGUMENTS);
 	data = (t_all *)malloc(sizeof(t_all));
@@ -25,13 +24,12 @@ int	main(int argc, char **argv)
 	data->info = (t_info *)malloc(sizeof(t_info));
 	if (!data->info)
 		common_err(ERR_MALLOC);
+	data->info->movespeed = 0.08;
+	data->info->rotspeed = 0.08;
 	parsing_qube(argv[1], data);
 	check_map_validation(data);
-	// int i = -1;
-	// while (data->info->map_arr[++i])
-	// 	printf("%s\n", data->info->map_arr[i]);
 	start_lodev_version(data->info, data->player);
 	// data_preset(data);
 	// first_render(data->win, data);
-	// clean(data);
+	clean(data);
 }

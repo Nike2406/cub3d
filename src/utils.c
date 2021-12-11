@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: signacia <signacia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:44:49 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/05 20:45:06 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/11 17:09:16 by signacia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,29 +22,6 @@ int	get_height_arr(char **arr)
 	return (i);
 }
 
-int	get_height_file(char *file_name)
-{
-	char	*line;
-	int		fd;
-	int		height;
-
-	line = NULL;
-	fd = open(file_name, O_RDONLY, 0);
-	if (fd < 0)
-		common_err(ERR_READING);
-	height = 0;
-	while (get_next_line(fd, &line))
-	{
-		height++;
-		free(line);
-	}
-	if (*line != '\0')
-		height++;
-	free(line);
-	close(fd);
-	return (height);
-}
-
 void	clean(t_all *data)
 {
 	int	i;
@@ -56,30 +33,6 @@ void	clean(t_all *data)
 	free(data);
 }
 
-int	get_width_file(char *file_name)
-{
-	char	*line;
-	int		fd;
-	int		width;
-	int		tmp;
-
-	line = NULL;
-	width = 0;
-	fd = open(file_name, O_RDONLY, 0);
-	if (fd < 0)
-		common_err(ERR_READING);
-	while (get_next_line(fd, &line))
-	{
-		tmp = get_width_arr(line);
-		if (tmp > width)
-			width = tmp;
-		free(line);
-	}
-	free(line);
-	close(fd);
-	return (width);
-}
-
 int	get_width_arr(char *arr)
 {
 	int	i;
@@ -88,34 +41,4 @@ int	get_width_arr(char *arr)
 	while (arr[i])
 		i++;
 	return (i);
-}
-
-float	MOD(float a)
-{
-	if (a < 0)
-		return (-a);
-	else
-		return (a);
-}
-
-float	MAX(float a, float b)
-{
-	if (a < b)
-		return (b);
-	else
-		return (a);
-}
-
-void	double_int_arr_fill(int **arr, int first, int second)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (++i < first)
-	{
-		j = -1;
-		while (++j < second)
-			arr[i][j] = 0;
-	}
 }
