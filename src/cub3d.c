@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:22:16 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/11 18:47:08 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/11 21:27:33 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,5 @@ int	main(int argc, char **argv)
 	parsing_qube(argv[1], data);
 	check_map_validation(data);
 	start_lodev_version(data->info, data->player);
-	// data_preset(data);
-	// first_render(data->win, data);
 	clean(data);
 }
