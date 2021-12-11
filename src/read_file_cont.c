@@ -6,7 +6,7 @@
 /*   By: signacia <signacia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 16:35:45 by signacia          #+#    #+#             */
-/*   Updated: 2021/12/11 16:38:53 by signacia         ###   ########.fr       */
+/*   Updated: 2021/12/11 18:32:13 by signacia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	parse_textures(t_all *data, char *str)
 			x = 2;
 		else
 			x = 3;
+		if (data->info->texture_addr[x] != NULL)
+			common_err(ERR_ARGUMENTS);
 		data->info->texture_addr[x] = ft_strtrim(str + 3, " \t");
 		if (data->info->texture_addr[x] == NULL
 			|| ft_strlen(data->info->texture_addr[x]) == 0)
