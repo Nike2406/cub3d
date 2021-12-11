@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_file_cont.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: signacia <signacia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 16:35:45 by signacia          #+#    #+#             */
-/*   Updated: 2021/12/11 18:32:13 by signacia         ###   ########.fr       */
+/*   Updated: 2021/12/11 18:54:48 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	parse_textures(t_all *data, char *str)
 		else if (ft_strncmp(str, "SO ", 3) == 0)
 			x = 1;
 		else if (ft_strncmp(str, "WE ", 3) == 0)
-			x = 2;
-		else
 			x = 3;
+		else
+			x = 2;
 		if (data->info->texture_addr[x] != NULL)
 			common_err(ERR_ARGUMENTS);
 		data->info->texture_addr[x] = ft_strtrim(str + 3, " \t");

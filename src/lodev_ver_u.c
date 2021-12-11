@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lodev_ver_u.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: signacia <signacia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 19:53:36 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/11 17:33:43 by signacia         ###   ########.fr       */
+/*   Updated: 2021/12/11 20:11:34 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,13 @@ void	calc(t_info *info)
 		fill_verticals(raycasting, info, x);
 		x++;
 	}
+	free(raycasting);
 }
 
 int	main_loop(t_info *info)
 {
 	calc(info);
+	print_map(info);
 	draw_lodev(info);
 	return (0);
 }

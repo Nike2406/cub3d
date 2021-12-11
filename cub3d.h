@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: signacia <signacia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 19:08:27 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/11 17:33:09 by signacia         ###   ########.fr       */
+/*   Updated: 2021/12/11 21:26:31 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@
 
 # define TEXWIDTH		64
 # define TEXHEIGHT		64
-# define WIN_WIDTH		1280
-# define WIN_HEIGHT		720
+# define WIN_WIDTH		640
+# define WIN_HEIGHT		480
+# define ZOOM			(WIN_HEIGHT / 70)
 
 typedef struct s_player
 {
@@ -147,5 +148,9 @@ void	get_side_position(t_raycasting *ray_c, t_info *info);
 void	get_ray_hit(t_raycasting *ray_c, t_info *info);
 void	get_texture_params(t_raycasting *ray_c, t_info *info);
 void	fill_verticals(t_raycasting *ray_c, t_info *info, int x);
+
+void	print_map(t_info *info);
+void	print_player(t_info *info, int start_x, int start_y, int color);
+void	print_rect(t_info *info, int start_x, int start_y, int color);
 
 #endif

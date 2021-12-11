@@ -6,7 +6,7 @@
 /*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 19:53:36 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/11 18:47:24 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/11 19:48:02 by prochell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int	start_lodev_version(t_info *info, t_player player)
 	info->img.data = (int *)mlx_get_data_addr(info->img.img,
 			&info->img.bpp, &info->img.size_l, &info->img.endian);
 	mlx_loop_hook(info->mlx, &main_loop, info);
+	print_map(info);
 	mlx_hook(info->win, 17, 0, keys_err, info);
 	mlx_hook(info->win, 2, 0, key_press_y, info);
 	mlx_loop(info->mlx);
