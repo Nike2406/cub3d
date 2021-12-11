@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: locus2 <locus2@student.42.fr>              +#+  +:+       +#+        */
+/*   By: signacia <signacia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 23:30:06 by locus2            #+#    #+#             */
-/*   Updated: 2021/05/07 12:39:48 by locus2           ###   ########.fr       */
+/*   Updated: 2021/12/07 18:54:28 by signacia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	char	*tmp;
+	void	*tmp;
 
 	tmp = malloc(size * nmemb);
 	if (!tmp)

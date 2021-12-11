@@ -1,3 +1,11 @@
+NO ./textures/watM_64.xpm
+SO ./textures/cry_64.xpm
+WE ./textures/watG_64.xpm
+EA ./textures/agreed_64.xpm
+
+C 110,80,40
+F 100,130,255
+
         1111111111111111111111111
         1000000000110000000000001
         1011000001110000000000001

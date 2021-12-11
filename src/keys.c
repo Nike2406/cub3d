@@ -3,67 +3,82 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prochell <prochell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: signacia <signacia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 12:07:48 by prochell          #+#    #+#             */
-/*   Updated: 2021/12/05 20:01:28 by prochell         ###   ########.fr       */
+/*   Updated: 2021/12/11 17:50:31 by signacia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	key_press_Y(int key, t_info *info)
+static int	key_press_xx(int key, t_info *info)
 {
-	if (key == 13 || key == 126)
-	{
-		if (ft_strchr(" 0",info->map_arr[(int)(info->posY)][(int)(info->posX + info->dirX * info->moveSpeed)]))
-			info->posX += info->dirX * info->moveSpeed;
-		if (ft_strchr(" 0",info->map_arr[(int)(info->posY + info->dirY * info->moveSpeed)][(int)(info->posX)]))
-			info->posY += info->dirY * info->moveSpeed;
-		// if (!info->map_arr[(int)(info->posX)][(int)(info->posY + info->dirY * info->moveSpeed)])
-	}
-	//move backwards if no wall behind you
-	if (key == 1 || key == 125)
-	{
-		// if (!info->map_arr[(int)(info->posX - info->dirX * info->moveSpeed)][(int)(info->posY)])
-		if (ft_strchr(" 0", info->map_arr[(int)(info->posY)][(int)(info->posX - info->dirX * info->moveSpeed)]))
-			info->posX -= info->dirX * info->moveSpeed;
-		// if (!info->map_arr[(int)(info->posX)][(int)(info->posY - info->dirY * info->moveSpeed)])
-		if (ft_strchr(" 0", info->map_arr[(int)(info->posY - info->dirY * info->moveSpeed)][(int)(info->posX)]))
-			info->posY -= info->dirY * info->moveSpeed;
-	}
-	else
-		key_press_X(key, info);
-	// printf("key - %d\n", key);
-	// printf("x - %f, y - %f\n", info->posX, info->posY);
-	return (0);
-}
+	double	old_dx;
+	double	old_px;
 
-int	key_press_X(int key, t_info *info)
-{
-	//rotate to the left
-	if (key == 0 || key == 123)
-	{
-		//both camera direction and camera plane must be rotated
-		double oldDirX = info->dirX;
-		info->dirX = info->dirX * cos(-info->rotSpeed) - info->dirY * sin(-info->rotSpeed);
-		info->dirY = oldDirX * sin(-info->rotSpeed) + info->dirY * cos(-info->rotSpeed);
-		double oldPlaneX = info->planeX;
-		info->planeX = info->planeX * cos(-info->rotSpeed) - info->planeY * sin(-info->rotSpeed);
-		info->planeY = oldPlaneX * sin(-info->rotSpeed) + info->planeY * cos(-info->rotSpeed);
-	}
-	//rotate to the right
 	if (key == 2 || key == 124)
 	{
-		//both camera direction and camera plane must be rotated
-		double oldDirX = info->dirX;
-		info->dirX = info->dirX * cos(info->rotSpeed) - info->dirY * sin(info->rotSpeed);
-		info->dirY = oldDirX * sin(info->rotSpeed) + info->dirY * cos(info->rotSpeed);
-		double oldPlaneX = info->planeX;
-		info->planeX = info->planeX * cos(info->rotSpeed) - info->planeY * sin(info->rotSpeed);
-		info->planeY = oldPlaneX * sin(info->rotSpeed) + info->planeY * cos(info->rotSpeed);
+		old_dx = info->dirx;
+		info->dirx = info->dirx * cos(info->rotspeed)
+			- info->diry * sin(info->rotspeed);
+		info->diry = old_dx * sin(info->rotspeed)
+			+ info->diry * cos(info->rotspeed);
+		old_px = info->planex;
+		info->planex = info->planex * cos(info->rotspeed)
+			- info->planey * sin(info->rotspeed);
+		info->planey = old_px * sin(info->rotspeed)
+			+ info->planey * cos(info->rotspeed);
 	}
 	if (key == 53)
 		exit(0);
+	return (0);
+}
+
+static int	key_press_x(int key, t_info *info)
+{
+	double	old_dx;
+	double	old_px;
+
+	if (key == 0 || key == 123)
+	{
+		old_dx = info->dirx;
+		info->dirx = info->dirx * cos(-info->rotspeed)
+			- info->diry * sin(-info->rotspeed);
+		info->diry = old_dx * sin(-info->rotspeed)
+			+ info->diry * cos(-info->rotspeed);
+		old_px = info->planex;
+		info->planex = info->planex * cos(-info->rotspeed)
+			- info->planey * sin(-info->rotspeed);
+		info->planey = old_px * sin(-info->rotspeed)
+			+ info->planey * cos(-info->rotspeed);
+	}
+	else
+		key_press_xx(key, info);
+	return (0);
+}
+
+int	key_press_y(int key, t_info *info)
+{
+	if (key == 13 || key == 126)
+	{
+		if (ft_strchr(" 0", info->map_arr[(int)(info->posy)][(int)(info->posx
+			+ info->dirx * info->movespeed)]))
+			info->posx += info->dirx * info->movespeed;
+		if (ft_strchr(" 0", info->map_arr[(int)(info->posy + info->diry
+					* info->movespeed)][(int)(info->posx)]))
+			info->posy += info->diry * info->movespeed;
+	}
+	else if (key == 1 || key == 125)
+	{
+		if (ft_strchr(" 0", info->map_arr[(int)(info->posy)][(int)(info->posx
+			- info->dirx * info->movespeed)]))
+			info->posx -= info->dirx * info->movespeed;
+		if (ft_strchr(" 0", info->map_arr[(int)(info->posy - info->diry
+					* info->movespeed)][(int)(info->posx)]))
+			info->posy -= info->diry * info->movespeed;
+	}
+	else
+		key_press_x(key, info);
 	return (0);
 }
